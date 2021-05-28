@@ -5,7 +5,8 @@ module.exports = {
     entry: "./src/index.tsx",
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "main.js"
+        filename: "main.js",
+        assetModuleFilename: "images/[name][ext]",
     },
     target: ["web", "es5"],
     resolve: {

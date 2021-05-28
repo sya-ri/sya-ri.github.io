@@ -1,12 +1,24 @@
 import {createStyles, makeStyles, Theme, Typography} from "@material-ui/core";
 
-const styles = makeStyles((_: Theme) => createStyles({
+const styles = makeStyles((theme: Theme) => createStyles({
+    background: {
+        backgroundColor: theme.palette.background.default,
+        width: '100vw',
+        height: '100vh',
+        padding: 0,
+        margin: 0,
+    },
     iconContainer: {
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: "translateY(-50%) translateX(-50%)",
         textAlign: 'center',
+        padding: `${theme.spacing(2)}px`,
+        boxShadow: '0 0 5px 3px rgba(0, 0, 0, 0.2)',
+        marginBottom: `${theme.spacing(2)}px`,
+        borderRadius: `${theme.spacing(2)}px`,
+        backgroundColor: theme.palette.background.paper,
     },
     icon: {
         width: '14em',
@@ -20,11 +32,13 @@ const styles = makeStyles((_: Theme) => createStyles({
 const Index = (): JSX.Element => {
     const classes = styles();
     return (
-        <div className={classes.iconContainer}>
-            <img src={"/icon.png"} alt="Icon" className={classes.icon}/>
-            <Typography className={classes.name}>
-                sya_ri
-            </Typography>
+        <div className={classes.background}>
+            <div className={classes.iconContainer}>
+                <img src={"/icon.png"} alt="Icon" className={classes.icon}/>
+                <Typography className={classes.name}>
+                    sya_ri
+                </Typography>
+            </div>
         </div>
     );
 }

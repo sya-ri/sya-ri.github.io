@@ -1,6 +1,7 @@
 {
   "name": "sya-ri.github.io",
   "version": "0.1.0",
+  "license": "ISC",
   "scripts": {
     "start:dev": "webpack-cli serve --config webpack.config.dev.js",
     "start:product": "webpack-cli serve --config webpack.config.product.js",

@@ -5,7 +5,9 @@
   "scripts": {
     "start:dev": "webpack-cli serve --config webpack.config.dev.js",
     "start:product": "webpack-cli serve --config webpack.config.product.js",
-    "build": "webpack --config webpack.config.product.js"
+    "build": "webpack --config webpack.config.product.js",
+    "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
+    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
@@ -20,7 +22,15 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.7",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
     "copy-webpack-plugin": "^9.0.0",
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.3.0",
     "ts-loader": "^9.2.2",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",

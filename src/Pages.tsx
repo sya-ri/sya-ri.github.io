@@ -1,5 +1,5 @@
 const Pages = {
-    index: '/'
+  index: '/',
 };
 
 export default Pages;

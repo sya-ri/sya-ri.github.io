@@ -14,6 +14,7 @@ const styles = makeStyles((theme: Theme) =>
     },
     icon: {
       width: '14em',
+      height: '14em',
     },
     name: {
       fontFamily: "'Nunito', sans-serif",

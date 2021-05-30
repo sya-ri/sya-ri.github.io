@@ -14,7 +14,6 @@ jobs:
         with:
           node-version: '14.x'
       - name: Cache node_modules
-        id: node_modules_cache_id
         uses: actions/cache@v2
         with:
           path: |

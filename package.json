@@ -7,7 +7,10 @@
     "start:product": "webpack-cli serve --config webpack.config.product.js",
     "build": "webpack --config webpack.config.product.js",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
-    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix"
+    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
+    "pack:update:check": "npx -p npm-check-updates  -c 'ncu'",
+    "pack:update:apply": "npx -p npm-check-updates  -c 'ncu -u'",
+    "pack:sort": "npx sort-package-json"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",

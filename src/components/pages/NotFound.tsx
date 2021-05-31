@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import OnePageVHCenterTemplate from '../templates/OnePageVHCenterTemplate';
 import React from 'react';
 import Pages from '../../Pages';
-import { NavigateBefore } from '@material-ui/icons';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,7 +50,7 @@ const NotFound = (): JSX.Element => {
       </Typography>
       <Link to={Pages.index} className={classes.backTopLink}>
         <Button className={classes.backTopContent}>
-          <NavigateBefore className={classes.backTopIcon} />
+          <NavigateBeforeIcon className={classes.backTopIcon} />
           トップに戻る
         </Button>
       </Link>

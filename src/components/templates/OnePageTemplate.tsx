@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
+import WithBodyStyle from './WithBodyStyle';
 
 const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,13 +19,7 @@ const styles = makeStyles((theme: Theme) =>
 const OnePageTemplate: FC = (props): JSX.Element => {
   const { children } = props;
   const classes = styles();
-  useEffect(() => {
-    document.body.className = classes.body;
-    return () => {
-      document.body.className = '';
-    };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  return <>{children}</>;
+  return <WithBodyStyle bodyClassName={classes.body}>{children}</WithBodyStyle>;
 };
 
 export default OnePageTemplate;

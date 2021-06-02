@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "license": "ISC",
   "scripts": {
-    "start:dev": "webpack-cli serve --config webpack.config.dev.js",
-    "start:product": "webpack-cli serve --config webpack.config.product.js",
+    "start:dev": "webpack serve --config webpack.config.dev.js",
+    "start:product": "webpack serve --config webpack.config.product.js",
     "build": "webpack --config webpack.config.product.js",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix",

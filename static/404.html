@@ -2,13 +2,9 @@
 <html lang="ja">
 <head>
   <script>
-    const padding = 0;
     const loc = window.location
     const path = loc.href.substr(origin.length + 1);
-    const segments = path.split('/');
-    const repo = segments.slice(0, padding).join('/');
-    const param = segments.slice(padding).join('/');
-    const url = origin + '/' + repo + '?p=' + encodeURIComponent(param);
+    const url = origin + '?p=' + encodeURIComponent(path);
     loc.replace(url);
   </script>
 </head>

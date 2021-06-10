@@ -6,9 +6,11 @@ import NotFound from './components/pages/NotFound';
 import Works from './components/pages/Works';
 import About from './components/pages/About';
 import Links from './components/pages/Links';
+import Helmet from './Helemet';
 
 const App = (): JSX.Element => (
   <div className="app">
+    <Helmet />
     <BrowserRouter>
       <div>
         <Switch>

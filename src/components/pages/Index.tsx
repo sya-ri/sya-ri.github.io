@@ -54,10 +54,17 @@ const styles = makeStyles((theme: Theme) =>
     pageLinkContent: {
       textDecoration: 'none',
       color: theme.palette.common.black,
+      padding: '0 6px',
+      '@media(min-width: 360px)': {
+        padding: 0,
+      },
     },
     pageLinkButton: {
       display: 'grid',
-      width: '100px',
+      width: 'calc(100% / 3)',
+      '@media(min-width: 360px)': {
+        width: '100px',
+      },
     },
     pageLinkIcon: {
       width: '2em',

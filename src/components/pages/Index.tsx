@@ -12,6 +12,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import Pages from '../../Pages';
+import Static from '../../Static';
 
 const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -67,7 +68,7 @@ const Index = (): JSX.Element => {
   ];
   return (
     <OnePageVHCenterTemplate className={classes.container}>
-      <img src={'/icon.png'} alt="Icon" className={classes.userIcon} />
+      <img src={Static.IconPng} alt="Icon" className={classes.userIcon} />
       <Typography className={classes.userName}>sya_ri</Typography>
       <div className={classes.linkContainer}>
         {links.map(({ href, caption, icon }) => (

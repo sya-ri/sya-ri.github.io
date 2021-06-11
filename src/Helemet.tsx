@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet as ReactHelmet } from 'react-helmet';
 import GeneralTheme from './GeneralTheme';
+import Static from './Static';
 
 const WebSiteURL = 'https://s7a.dev';
 const PageTitle = "sya-ri's Portfolio";
@@ -11,19 +12,19 @@ const Helmet = (): JSX.Element => (
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href={'/apple-touch-icon.png'}
+      href={Static.AppleTouchIconPng}
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href={'/favicon-32x32.png'}
+      href={Static.Favicon32x32Png}
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href={'/favicon-16x16.png'}
+      href={Static.Favicon16x16Png}
     />
     <link rel="manifest" href={'/site.webmanifest'} />
     <meta name="msapplication-TileColor" content="#da532c" />
@@ -43,13 +44,13 @@ const Helmet = (): JSX.Element => (
     <meta property="og:url" content={WebSiteURL} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={PageTitle} />
-    <meta property="og:image" content={`${WebSiteURL}/icon-1200x630.png`} />
+    <meta property="og:image" content={WebSiteURL + Static.Icon1200x630Png} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@fly_in_pig" />
     <meta name="twitter:title" content={PageTitle} />
-    <meta name="twitter:image" content={`${WebSiteURL}/icon-1200x630.png`} />
+    <meta name="twitter:image" content={WebSiteURL + Static.Icon1200x630Png} />
 
     {/* General */}
     <title>{PageTitle}</title>

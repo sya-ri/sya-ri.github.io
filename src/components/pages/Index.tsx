@@ -2,9 +2,11 @@ import React from 'react';
 import {
   Button,
   createStyles,
+  IconButton,
   Link,
   makeStyles,
   Theme,
+  Tooltip,
   Typography,
 } from '@material-ui/core';
 import OnePageVHCenterTemplate from '../templates/OnePageVHCenterTemplate';
@@ -13,6 +15,8 @@ import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import Pages from '../../Pages';
 import Static from '../../Static';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,19 +40,26 @@ const styles = makeStyles((theme: Theme) =>
       fontFamily: "'Nunito', sans-serif",
       fontSize: '2em',
     },
-    linkContainer: {
-      display: 'flex',
-      paddingTop: `${theme.spacing(2)}px`,
+    externalLinkContainer: {
+      padding: `${theme.spacing(1)}px 0`,
     },
-    linkContent: {
+    externalLinkIcon: {
+      margin: `0 ${theme.spacing(1)}px`,
+    },
+    pageLinkContainer: {
+      display: 'flex',
+      borderTop: 'dashed 1px',
+      paddingTop: `${theme.spacing(1)}px`,
+    },
+    pageLinkContent: {
       textDecoration: 'none',
       color: theme.palette.common.black,
     },
-    linkButton: {
+    pageLinkButton: {
       display: 'grid',
       width: '100px',
     },
-    linkIcon: {
+    pageLinkIcon: {
       width: '2em',
       margin: 'auto',
     },
@@ -61,7 +72,11 @@ const link = (href: string, caption: string, icon: JSX.Element) => {
 
 const Index = (): JSX.Element => {
   const classes = styles();
-  const links = [
+  const externalLinks = [
+    link('https://twitter.com/fly_in_pig', 'Twitter', <TwitterIcon />),
+    link('https://github.com/sya-ri', 'GitHub', <GitHubIcon />),
+  ];
+  const pageLinks = [
     link(Pages.about, 'About', <PersonIcon />),
     link(Pages.works, 'Works', <BookmarkIcon />),
     link(Pages.speaks, 'Speaks', <LibraryBooksIcon />),
@@ -70,11 +85,25 @@ const Index = (): JSX.Element => {
     <OnePageVHCenterTemplate className={classes.container}>
       <img src={Static.IconPng} alt="Icon" className={classes.userIcon} />
       <Typography className={classes.userName}>sya_ri</Typography>
-      <div className={classes.linkContainer}>
-        {links.map(({ href, caption, icon }) => (
-          <Link href={href} className={classes.linkContent} key={href}>
-            <Button className={classes.linkButton}>
-              <div className={classes.linkIcon}>{icon}</div>
+      <div className={classes.externalLinkContainer}>
+        {externalLinks.map((link) => (
+          <Tooltip title={link.caption} key={link.href}>
+            <IconButton
+              href={link.href}
+              target="_blank"
+              color="primary"
+              className={classes.externalLinkIcon}
+            >
+              {link.icon}
+            </IconButton>
+          </Tooltip>
+        ))}
+      </div>
+      <div className={classes.pageLinkContainer}>
+        {pageLinks.map(({ href, caption, icon }) => (
+          <Link href={href} className={classes.pageLinkContent} key={href}>
+            <Button className={classes.pageLinkButton}>
+              <div className={classes.pageLinkIcon}>{icon}</div>
               <Typography variant="caption">{caption}</Typography>
             </Button>
           </Link>

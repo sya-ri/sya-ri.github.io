@@ -35,6 +35,7 @@ const Helmet = (): JSX.Element => (
       rel="stylesheet"
     />
     <title>sya-ri</title>
+    <meta name="commit_hash" content={COMMIT_HASH} />
   </ReactHelmet>
 );
 

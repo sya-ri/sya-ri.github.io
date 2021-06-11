@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
+const { DefinePlugin } = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
+
+const gitRevisionPlugin = new GitRevisionPlugin({
+  commithashCommand: 'rev-parse --short HEAD',
+});
 
 module.exports = {
   entry: './src/index.tsx',
@@ -23,6 +29,9 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin({
       patterns: [{ from: 'static' }],
+    }),
+    new DefinePlugin({
+      COMMIT_HASH: `"${gitRevisionPlugin.commithash()}"`,
     }),
   ],
 };

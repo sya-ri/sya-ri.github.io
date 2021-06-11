@@ -4,6 +4,7 @@ import GeneralTheme from './GeneralTheme';
 
 const Helmet = (): JSX.Element => (
   <ReactHelmet>
+    {/* Favicon https://www.favicon-generator.org/ */}
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -27,14 +28,20 @@ const Helmet = (): JSX.Element => (
       name="theme-color"
       content={GeneralTheme.palette.background.default}
     />
-    <meta charSet="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {/* Google Font */}
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link // For components/Index.tsx : userName
       href="https://fonts.googleapis.com/css2?family=Nunito&display=swap&text=sya_ri"
       rel="stylesheet"
     />
+
+    {/* General */}
     <title>sya-ri</title>
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {/* Debug Tag */}
     <meta name="commit_hash" content={COMMIT_HASH} />
   </ReactHelmet>
 );

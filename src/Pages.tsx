@@ -2,7 +2,7 @@ const Pages = {
   index: '/',
   about: '/about',
   works: '/works',
-  links: '/links',
+  speaks: '/speaks',
 };
 
 export default Pages;

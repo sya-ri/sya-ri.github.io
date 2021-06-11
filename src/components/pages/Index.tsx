@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import OnePageVHCenterTemplate from '../templates/OnePageVHCenterTemplate';
 import PersonIcon from '@material-ui/icons/Person';
-import LinkIcon from '@material-ui/icons/Link';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import Pages from '../../Pages';
 
@@ -63,7 +63,7 @@ const Index = (): JSX.Element => {
   const links = [
     link(Pages.about, 'About', <PersonIcon />),
     link(Pages.works, 'Works', <BookmarkIcon />),
-    link(Pages.links, 'Links', <LinkIcon />),
+    link(Pages.speaks, 'Speaks', <LibraryBooksIcon />),
   ];
   return (
     <OnePageVHCenterTemplate className={classes.container}>

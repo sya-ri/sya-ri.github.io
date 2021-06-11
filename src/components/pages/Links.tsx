@@ -1,6 +1,6 @@
 import React from 'react';
-import NotFound from './NotFound';
+import NotImplement from './NotImplement';
 
-const Links = (): JSX.Element => <NotFound />;
+const Links = (): JSX.Element => <NotImplement />;
 
 export default Links;

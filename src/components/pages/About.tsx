@@ -1,6 +1,6 @@
 import React from 'react';
-import NotFound from './NotFound';
+import NotImplement from './NotImplement';
 
-const About = (): JSX.Element => <NotFound />;
+const About = (): JSX.Element => <NotImplement />;
 
 export default About;

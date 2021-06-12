@@ -3,6 +3,7 @@ const path = require('path');
 const { DefinePlugin } = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
+const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
 
 const gitRevisionPlugin = new GitRevisionPlugin({
   commithashCommand: 'rev-parse --short HEAD',
@@ -34,4 +35,8 @@ module.exports = {
       COMMIT_HASH: `"${gitRevisionPlugin.commithash()}"`,
     }),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [new HtmlMinimizerPlugin()],
+  },
 };

@@ -4,6 +4,7 @@ const { DefinePlugin } = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
 
 const gitRevisionPlugin = new GitRevisionPlugin({
@@ -43,6 +44,6 @@ module.exports = {
   ],
   optimization: {
     minimize: true,
-    minimizer: [new HtmlMinimizerPlugin()],
+    minimizer: [new TerserPlugin(), new HtmlMinimizerPlugin()],
   },
 };

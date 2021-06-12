@@ -3,6 +3,7 @@ const path = require('path');
 const { DefinePlugin } = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
 
 const gitRevisionPlugin = new GitRevisionPlugin({
@@ -33,6 +34,11 @@ module.exports = {
     }),
     new DefinePlugin({
       COMMIT_HASH: `"${gitRevisionPlugin.commithash()}"`,
+    }),
+    new ImageMinimizerPlugin({
+      minimizerOptions: {
+        plugins: [['optipng']],
+      },
     }),
   ],
   optimization: {

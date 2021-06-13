@@ -17,6 +17,7 @@ import Pages from '../../Pages';
 import Static from '../../Static';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import MailIcon from '@material-ui/icons/Mail';
 
 const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -82,6 +83,7 @@ const Index = (): JSX.Element => {
   const externalLinks = [
     link('https://twitter.com/fly_in_pig', 'Twitter', <TwitterIcon />),
     link('https://github.com/sya-ri', 'GitHub', <GitHubIcon />),
+    link('mailto:contact@s7a.dev', 'Mail', <MailIcon />),
   ];
   const pageLinks = [
     link(Pages.about, 'About', <PersonIcon />),

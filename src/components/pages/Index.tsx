@@ -81,7 +81,7 @@ const link = (href: string, caption: string, icon: JSX.Element) => {
 const Index = (): JSX.Element => {
   const classes = styles();
   const externalLinks = [
-    link('https://twitter.com/fly_in_pig', 'Twitter', <TwitterIcon />),
+    link('https://twitter.com/sya_ri_dayo', 'Twitter', <TwitterIcon />),
     link('https://github.com/sya-ri', 'GitHub', <GitHubIcon />),
     link('mailto:contact@s7a.dev', 'Mail', <MailIcon />),
   ];

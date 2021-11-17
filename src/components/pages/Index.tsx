@@ -43,6 +43,7 @@ const Index: FC = () => (
               colorScheme="black"
               variant="outline"
               icon={<Icon as={icon} />}
+              borderRadius="full"
               as="a"
               href={url}
               target="_blank"

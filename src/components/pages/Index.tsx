@@ -40,8 +40,8 @@ const Index: FC = () => (
           <Tooltip key={name} label={name} hasArrow>
             <IconButton
               aria-label={name}
-              colorScheme="black"
               variant="outline"
+              borderColor="black"
               icon={<Icon as={icon} />}
               borderRadius="full"
               as="a"

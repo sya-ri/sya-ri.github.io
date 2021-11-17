@@ -16,6 +16,7 @@
 - **perf**: A code change that improves performance
 - **chore**: Changes to the build process or libraries version
 - **ui**: A code change that improves ui
+- **workflow**: Changes `.github/workflows`
 
 ### Subject
 

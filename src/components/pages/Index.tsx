@@ -6,7 +6,6 @@ import {
   Icon,
   IconButton,
   Image,
-  Link,
   Stack,
   Text,
   Tooltip,

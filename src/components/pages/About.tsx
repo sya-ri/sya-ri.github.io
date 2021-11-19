@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import HeadingPage from '../template/HeadingPage';
-import Skills, { Skill } from '../parts/about/Skills';
 import { Text } from '@chakra-ui/react';
+import Skills, { Skill } from '../parts/about/Skills';
 import ReturnToTop from '../parts/ReturnToTop';
+import HeadingPage from '../template/HeadingPage';
 
 const skills: Skill[] = [
   {

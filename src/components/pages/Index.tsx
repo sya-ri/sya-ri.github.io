@@ -11,12 +11,12 @@ import {
   Text,
   Tooltip,
 } from '@chakra-ui/react';
-import { FiTwitter, FiGithub, FiMail } from 'react-icons/fi';
 import { BsFillPersonFill, BsQuestion } from 'react-icons/bs';
-import * as Statics from '../../Statics';
-import * as Paths from '../../Paths';
-import CenteringPage from '../template/CenteringPage';
+import { FiTwitter, FiGithub, FiMail } from 'react-icons/fi';
 import { Link as RouterDomLink } from 'react-router-dom';
+import * as Paths from '../../Paths';
+import * as Statics from '../../Statics';
+import CenteringPage from '../template/CenteringPage';
 
 const links = [
   { name: 'Twitter', url: 'https://twitter.com/sya_ri_dayo', icon: FiTwitter },

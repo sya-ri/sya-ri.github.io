@@ -1,125 +1,78 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
+  Box,
   Button,
-  createStyles,
+  Container,
+  Icon,
   IconButton,
-  Link,
-  makeStyles,
-  Theme,
+  Image,
+  SimpleGrid,
+  Stack,
+  Text,
   Tooltip,
-  Typography,
-} from '@material-ui/core';
-import OnePageVHCenterTemplate from '../templates/OnePageVHCenterTemplate';
-import PersonIcon from '@material-ui/icons/Person';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import BookmarkIcon from '@material-ui/icons/Bookmark';
-import Pages from '../../Pages';
-import Static from '../../Static';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import MailIcon from '@material-ui/icons/Mail';
+} from '@chakra-ui/react';
+import { FiTwitter, FiGithub, FiMail } from 'react-icons/fi';
+import { BsFillPersonFill, BsQuestion } from 'react-icons/bs';
+import * as Statics from '../../Statics';
+import * as Paths from '../../Paths';
+import CenteringPage from '../template/CenteringPage';
+import { Link as RouterDomLink } from 'react-router-dom';
 
-const styles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      textAlign: 'center',
-      padding: `${theme.spacing(2)}px`,
-      boxShadow: '0 0 5px 3px rgba(0, 0, 0, 0.2)',
-      marginBottom: `${theme.spacing(2)}px`,
-      borderRadius: `${theme.spacing(2)}px`,
-      backgroundColor: theme.palette.background.paper,
-      width: 'calc(100% - 60px)',
-      '@media(min-width: 360px)': {
-        width: '300px',
-      },
-    },
-    userIcon: {
-      width: '150px',
-      height: '150px',
-    },
-    userName: {
-      fontFamily: "'Nunito', sans-serif",
-      fontSize: '2em',
-    },
-    externalLinkContainer: {
-      padding: `${theme.spacing(1)}px 0`,
-    },
-    externalLinkIcon: {
-      margin: `0 ${theme.spacing(1)}px`,
-    },
-    pageLinkContainer: {
-      display: 'flex',
-      borderTop: 'dashed 1px',
-      paddingTop: `${theme.spacing(1)}px`,
-    },
-    pageLinkContent: {
-      textDecoration: 'none',
-      color: theme.palette.common.black,
-      padding: '0 6px',
-      '@media(min-width: 360px)': {
-        padding: 0,
-      },
-    },
-    pageLinkButton: {
-      display: 'grid',
-      width: 'calc(100% / 3)',
-      '@media(min-width: 360px)': {
-        width: '100px',
-      },
-    },
-    pageLinkIcon: {
-      width: '2em',
-      margin: 'auto',
-    },
-  })
-);
+const links = [
+  { name: 'Twitter', url: 'https://twitter.com/sya_ri_dayo', icon: FiTwitter },
+  { name: 'GitHub', url: 'https://github.com/sya-ri', icon: FiGithub },
+  { name: 'Mail', url: 'mailto:contact@s7a.dev', icon: FiMail },
+];
 
-const link = (href: string, caption: string, icon: JSX.Element) => {
-  return { href, caption, icon };
-};
+const pages = [
+  { name: 'About', url: Paths.About, icon: BsFillPersonFill },
+  { name: 'Fake', url: '', icon: BsQuestion },
+];
 
-const Index = (): JSX.Element => {
-  const classes = styles();
-  const externalLinks = [
-    link('https://twitter.com/sya_ri_dayo', 'Twitter', <TwitterIcon />),
-    link('https://github.com/sya-ri', 'GitHub', <GitHubIcon />),
-    link('mailto:contact@s7a.dev', 'Mail', <MailIcon />),
-  ];
-  const pageLinks = [
-    link(Pages.about, 'About', <PersonIcon />),
-    link(Pages.works, 'Works', <BookmarkIcon />),
-    link(Pages.speaks, 'Speaks', <LibraryBooksIcon />),
-  ];
-  return (
-    <OnePageVHCenterTemplate className={classes.container}>
-      <img src={Static.IconPng} alt="Icon" className={classes.userIcon} />
-      <Typography className={classes.userName}>sya_ri</Typography>
-      <div className={classes.externalLinkContainer}>
-        {externalLinks.map((link) => (
-          <Tooltip title={link.caption} key={link.href}>
+const Index: FC = () => (
+  <CenteringPage>
+    <Container
+      centerContent
+      bgColor="white"
+      w={300}
+      p={8}
+      boxShadow="0 0 5px 3px rgba(0, 0, 0, .2)"
+      rounded="2xl"
+    >
+      <Box boxSize="150px">
+        <Image src={Statics.IconPng} />
+      </Box>
+      <Text fontSize="4xl" fontFamily="'Kalam', cursive" pt={4} pb={6}>
+        sya_ri
+      </Text>
+      <Stack direction="row" spacing={8}>
+        {links.map(({ name, url, icon }) => (
+          <Tooltip key={name} label={name} hasArrow>
             <IconButton
-              href={link.href}
+              aria-label={name}
+              variant="outline"
+              borderColor="black"
+              icon={<Icon as={icon} />}
+              rounded="full"
+              as="a"
+              href={url}
               target="_blank"
-              color="primary"
-              className={classes.externalLinkIcon}
-            >
-              {link.icon}
-            </IconButton>
+            />
           </Tooltip>
         ))}
-      </div>
-      <div className={classes.pageLinkContainer}>
-        {pageLinks.map(({ href, caption, icon }) => (
-          <Link href={href} className={classes.pageLinkContent} key={href}>
-            <Button className={classes.pageLinkButton}>
-              <div className={classes.pageLinkIcon}>{icon}</div>
-              <Typography variant="caption">{caption}</Typography>
-            </Button>
-          </Link>
+      </Stack>
+      <SimpleGrid columns={2} spacing={1} pt={4}>
+        {pages.map(({ name, url, icon }) => (
+          <Button key={name} bg="white" as={RouterDomLink} to={url}>
+            <Container centerContent>
+              <Icon aria-label={name} as={icon} />
+              <Text fontSize={14}>{name}</Text>
+            </Container>
+          </Button>
         ))}
-      </div>
-    </OnePageVHCenterTemplate>
-  );
-};
+      </SimpleGrid>
+    </Container>
+  </CenteringPage>
+);
 
 export default Index;

@@ -42,7 +42,7 @@
     "image-minimizer-webpack-plugin": "^2.2.0",
     "imagemin-optipng": "^8.0.0",
     "prettier": "^2.3.2",
-    "terser-webpack-plugin": "^5.1.4",
+    "terser-webpack-plugin": "5.2.5",
     "ts-loader": "^9.2.3",
     "webpack": "^5.42.1",
     "webpack-cli": "^4.7.2",

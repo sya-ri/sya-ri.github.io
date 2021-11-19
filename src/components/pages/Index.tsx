@@ -1,22 +1,32 @@
 import React, { FC } from 'react';
 import {
   Box,
+  Button,
   Container,
   Icon,
   IconButton,
   Image,
+  SimpleGrid,
   Stack,
   Text,
   Tooltip,
 } from '@chakra-ui/react';
 import { FiTwitter, FiGithub, FiMail } from 'react-icons/fi';
+import { BsFillPersonFill, BsQuestion } from 'react-icons/bs';
 import * as Statics from '../../Statics';
+import * as Paths from '../../Paths';
 import CenteringPage from '../template/CenteringPage';
+import { Link as RouterDomLink } from 'react-router-dom';
 
 const links = [
   { name: 'Twitter', url: 'https://twitter.com/sya_ri_dayo', icon: FiTwitter },
   { name: 'GitHub', url: 'https://github.com/sya-ri', icon: FiGithub },
   { name: 'Mail', url: 'mailto:contact@s7a.dev', icon: FiMail },
+];
+
+const pages = [
+  { name: 'About', url: Paths.About, icon: BsFillPersonFill },
+  { name: 'Fake', url: '', icon: BsQuestion },
 ];
 
 const Index: FC = () => (
@@ -51,6 +61,16 @@ const Index: FC = () => (
           </Tooltip>
         ))}
       </Stack>
+      <SimpleGrid columns={2} spacing={1} pt={4}>
+        {pages.map(({ name, url, icon }) => (
+          <Button key={name} bg="white" as={RouterDomLink} to={url}>
+            <Container centerContent>
+              <Icon aria-label={name} as={icon} />
+              <Text fontSize={14}>{name}</Text>
+            </Container>
+          </Button>
+        ))}
+      </SimpleGrid>
     </Container>
   </CenteringPage>
 );

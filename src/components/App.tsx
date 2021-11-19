@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import * as Paths from '../Paths';
 
 const Index = lazy(() => import('./pages/Index'));
+const About = lazy(() => import('./pages/About'));
 
 const App = (): JSX.Element => (
   <ChakraProvider>
@@ -11,6 +12,7 @@ const App = (): JSX.Element => (
       <BrowserRouter>
         <Routes>
           <Route path={Paths.Index} element={<Index />} />
+          <Route path={Paths.About} element={<About />} />
         </Routes>
       </BrowserRouter>
     </Suspense>

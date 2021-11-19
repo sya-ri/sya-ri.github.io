@@ -6,38 +6,38 @@ import HeadingPage from '../template/HeadingPage';
 
 const skills: Skill[] = [
   {
+    contents: [
+      { description: 'For Server', name: 'Kotlin' },
+      { description: 'For Web', name: 'TypeScript' },
+      { description: 'For Embed/Robot', name: 'C++' },
+    ],
     name: 'Languages',
-    contents: [
-      { name: 'Kotlin', description: 'For Server' },
-      { name: 'TypeScript', description: 'For Web' },
-      { name: 'C++', description: 'For Embed/Robot' },
-    ],
   },
   {
+    contents: [
+      { description: 'Build Tool', name: 'Gradle' },
+      { description: 'Server Framework', name: 'Ktor' },
+      { description: 'SQL Framework', name: 'Exposed' },
+    ],
     name: 'Kotlin',
-    contents: [
-      { name: 'Gradle', description: 'Build Tool' },
-      { name: 'Ktor', description: 'Server Framework' },
-      { name: 'Exposed', description: 'SQL Framework' },
-    ],
   },
   {
+    contents: [{ description: 'Web Framework', name: 'React' }],
     name: 'Frontend',
-    contents: [{ name: 'React', description: 'Web Framework' }],
   },
   {
+    contents: [
+      { description: 'Version Control System', name: 'Git / GitHub' },
+      { description: 'CI/CD', name: 'GitHub Actions' },
+    ],
     name: 'Tools',
-    contents: [
-      { name: 'Git / GitHub', description: 'Version Control System' },
-      { name: 'GitHub Actions', description: 'CI/CD' },
-    ],
   },
   {
-    name: 'Others',
     contents: [
-      { name: 'Minecraft Plugin', description: 'Extend Minecraft Server' },
-      { name: 'Discord Bot', description: 'Make Useful Bot' },
+      { description: 'Extend Minecraft Server', name: 'Minecraft Plugin' },
+      { description: 'Make Useful Bot', name: 'Discord Bot' },
     ],
+    name: 'Others',
   },
 ];
 

@@ -6,14 +6,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
-  },
-  target: ['web', 'es5'],
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json'],
-  },
   module: {
     rules: [
       {
@@ -22,12 +14,20 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    minimizer: [new TerserPlugin(), new HtmlMinimizerPlugin()],
+  },
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
   plugins: [
     new CopyWebpackPlugin({
       patterns: [{ from: 'static' }],
     }),
   ],
-  optimization: {
-    minimizer: [new TerserPlugin(), new HtmlMinimizerPlugin()],
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json'],
   },
+  target: ['web', 'es5'],
 };

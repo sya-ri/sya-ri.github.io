@@ -19,14 +19,14 @@ import * as Statics from '../../Statics';
 import CenteringPage from '../template/CenteringPage';
 
 const links = [
-  { name: 'Twitter', url: 'https://twitter.com/sya_ri_dayo', icon: FiTwitter },
-  { name: 'GitHub', url: 'https://github.com/sya-ri', icon: FiGithub },
-  { name: 'Mail', url: 'mailto:contact@s7a.dev', icon: FiMail },
+  { icon: FiTwitter, name: 'Twitter', url: 'https://twitter.com/sya_ri_dayo' },
+  { icon: FiGithub, name: 'GitHub', url: 'https://github.com/sya-ri' },
+  { icon: FiMail, name: 'Mail', url: 'mailto:contact@s7a.dev' },
 ];
 
 const pages = [
-  { name: 'About', url: Paths.About, icon: BsFillPersonFill },
-  { name: 'Fake', url: '', icon: BsQuestion },
+  { icon: BsFillPersonFill, name: 'About', url: Paths.About },
+  { icon: BsQuestion, name: 'Fake', url: '' },
 ];
 
 const Index: FC = () => (

@@ -1,7 +1,7 @@
 {
   "env": {
-    "es6": true,
     "browser": true,
+    "es6": true,
     "node": true
   },
   "extends": [
@@ -16,10 +16,10 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2021,
     "ecmaFeatures": {
       "jsx": true
     },
+    "ecmaVersion": 2021,
     "sourceType": "module"
   },
   "plugins": [
@@ -27,31 +27,33 @@
     "react-hooks",
     "react",
     "@typescript-eslint",
-    "prettier"
+    "prettier",
+    "sort-keys-fix"
   ],
   "rules": {
     "import/order": [
       "error",
       {
+        "alphabetize": {
+          "caseInsensitive": true,
+          "order": "asc"
+        },
         "groups": ["builtin", "external", "internal"],
+        "newlines-between": "never",
         "pathGroups": [
           {
-            "pattern": "react",
             "group": "external",
+            "pattern": "react",
             "position": "before"
           }
         ],
-        "pathGroupsExcludedImportTypes": ["react"],
-        "newlines-between": "never",
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        }
+        "pathGroupsExcludedImportTypes": ["react"]
       }
     ],
-    "sort-imports": "off",
+    "prettier/prettier": "error",
     "react/prop-types": "off",
-    "prettier/prettier": "error"
+    "sort-imports": "off",
+    "sort-keys-fix/sort-keys-fix": "warn"
   },
   "settings": {
     "react": {

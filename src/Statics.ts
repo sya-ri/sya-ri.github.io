@@ -1,1 +1,1 @@
-export const Icon = '/icon.png';
+export const IconPng = '/icon.png';

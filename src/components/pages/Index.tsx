@@ -30,7 +30,7 @@ const Index: FC = () => (
       rounded="2xl"
     >
       <Box boxSize="150px">
-        <Image src={Statics.Icon} />
+        <Image src={Statics.IconPng} />
       </Box>
       <Text fontSize="4xl" fontFamily="'Kalam', cursive" pt={4} pb={6}>
         sya_ri

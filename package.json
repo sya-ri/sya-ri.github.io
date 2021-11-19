@@ -7,11 +7,7 @@
     "start:product": "webpack serve --config webpack.config.product.js",
     "build": "webpack --config webpack.config.product.js",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
-    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
-    "pack:update:check": "npx -p npm-check-updates -c 'ncu'",
-    "pack:update:apply": "npx -p npm-check-updates -c 'ncu -u' && yarn",
-    "pack:update:formatter": "node scripts/pack-update-formatter.js",
-    "pack:sort": "npx sort-package-json"
+    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix"
   },
   "dependencies": {
     "@chakra-ui/react": "1.7.2",

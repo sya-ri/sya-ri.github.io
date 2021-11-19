@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import {
   Box,
   Container,
-  Flex,
   Icon,
   IconButton,
   Image,
@@ -12,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { FiTwitter, FiGithub, FiMail } from 'react-icons/fi';
 import * as Statics from '../../Statics';
+import CenteringPage from '../template/CenteringPage';
 
 const links = [
   { name: 'Twitter', url: 'https://twitter.com/sya_ri_dayo', icon: FiTwitter },
@@ -20,7 +20,7 @@ const links = [
 ];
 
 const Index: FC = () => (
-  <Flex align="center" justify="center" height="100vh">
+  <CenteringPage>
     <Container
       centerContent
       bgColor="white"
@@ -52,7 +52,7 @@ const Index: FC = () => (
         ))}
       </Stack>
     </Container>
-  </Flex>
+  </CenteringPage>
 );
 
 export default Index;

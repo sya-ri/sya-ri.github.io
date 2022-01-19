@@ -15,6 +15,7 @@ import {
   SiInstagram,
   SiTwitter,
 } from "react-icons/si";
+import { use100vh } from "../lib/100vh";
 
 const link = (icon: IconType, title: string, link: string) => ({
   icon,
@@ -30,23 +31,26 @@ const links = [
   link(SiAmazon, "Amazon", "https://link.s7a.dev/amazon"),
 ];
 
-const Index = () => (
-  <Center flexDirection="column" gap={4} minH="100vh" p="auto">
-    <Image alt="Icon" rounded="full" src="/icon.png" w={120} />
-    <Text fontSize={32} pb={4}>
-      sya_ri
-    </Text>
-    {links.map(({ icon, title, link }) => (
-      <Button key={title} w={200}>
-        <Link isExternal href={link}>
-          <Flex align="center">
-            <Icon as={icon} mr={2} />
-            {title}
-          </Flex>
-        </Link>
-      </Button>
-    ))}
-  </Center>
-);
+const Index = () => {
+  const vh100 = use100vh();
+  return (
+    <Center flexDirection="column" gap={4} minH={vh100 || "100vh"} p="auto">
+      <Image alt="Icon" rounded="full" src="/icon.png" w={120} />
+      <Text fontSize={32} pb={4}>
+        sya_ri
+      </Text>
+      {links.map(({ icon, title, link }) => (
+        <Button key={title} w={200}>
+          <Link isExternal href={link}>
+            <Flex align="center">
+              <Icon as={icon} mr={2} />
+              {title}
+            </Flex>
+          </Link>
+        </Button>
+      ))}
+    </Center>
+  );
+};
 
 export default Index;

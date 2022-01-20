@@ -35,7 +35,7 @@ const Index = () => {
   const vh100 = use100vh();
   return (
     <Center flexDirection="column" gap={4} minH={vh100 || "100vh"} p="auto">
-      <Image alt="Icon" rounded="full" src="/icon.png" w={120} />
+      <Image alt="Icon" h={120} rounded="full" src="/icon.png" w={120} />
       <Text fontSize={32} pb={4}>
         sya_ri
       </Text>

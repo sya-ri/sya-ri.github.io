@@ -23,7 +23,7 @@ class Document extends NextDocument {
             type="image/png"
           />
           <link href="/site.webmanifest" rel="manifest" />
-          <link color="#a9a9a9" href="/safari-pinned-tab.svg" rel="mask-icon" />
+          <link color="#9e8b7f" href="/safari-pinned-tab.svg" rel="mask-icon" />
           <meta content="#ffffff" name="msapplication-TileColor" />
           <meta content="#ffffff" name="theme-color" />
         </Head>

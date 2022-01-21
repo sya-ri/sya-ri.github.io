@@ -40,7 +40,12 @@ const Index = () => {
         sya_ri
       </Text>
       {links.map(({ icon, title, link }) => (
-        <Link key={title} isExternal href={link}>
+        <Link
+          key={title}
+          isExternal
+          _hover={{ textDecoration: "none" }}
+          href={link}
+        >
           <Button w={200}>
             <Flex align="center">
               <Icon as={icon} mr={2} />

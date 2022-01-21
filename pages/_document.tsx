@@ -26,6 +26,25 @@ class Document extends NextDocument {
           <link color="#9e8b7f" href="/safari-pinned-tab.svg" rel="mask-icon" />
           <meta content="#ffffff" name="msapplication-TileColor" />
           <meta content="#ffffff" name="theme-color" />
+
+          {/* Open Graph https://www.opengraph.xyz/ */}
+          <meta content="https://s7a.dev/" property="og:url" />
+          <meta content="website" property="og:type" />
+          <meta content="sya-ri" property="og:title" />
+          <meta content="Portfolio" property="og:description" />
+          <meta
+            content="https://s7a.dev/icon-1200x630.png"
+            property="og:image"
+          />
+          <meta content="summary_large_image" name="twitter:card" />
+          <meta content="s7a.dev" property="twitter:domain" />
+          <meta content="https://s7a.dev/" property="twitter:url" />
+          <meta content="sya-ri" name="twitter:title" />
+          <meta content="" name="twitter:description" />
+          <meta
+            content="https://s7a.dev/icon-1200x630.png"
+            name="twitter:image"
+          />
         </Head>
         <body>
           <Main />

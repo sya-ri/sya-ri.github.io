@@ -37,9 +37,10 @@ const Index = () => {
     <Center flexDirection="column" gap={4} minH={vh100 || "100vh"} p="auto">
       <Image
         alt="Icon"
+        bgColor="white"
         h={120}
         rounded="full"
-        src="/icon-128x128.png"
+        src="/icon.svg"
         w={120}
       />
       <Text fontSize={32} pb={4}>

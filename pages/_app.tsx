@@ -1,5 +1,6 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { AppProps } from "next/app";
+import GoogleAnalytics from "../components/GoogleAnalytics";
 
 const theme = extendTheme({
   config: {
@@ -21,6 +22,7 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <title>sya-ri</title>
       <meta content="sya-ri's Portfolio" property="description" />
+      <GoogleAnalytics />
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />
       </ChakraProvider>

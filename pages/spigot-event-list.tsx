@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
 
-const Destination = "https://gh.s7a.dev/spigot-event-list";
+const Destination = "https://spigot-event-list.s7a.dev";
 
 const SpigotEventList: NextPage = () => {
   const router = useRouter();

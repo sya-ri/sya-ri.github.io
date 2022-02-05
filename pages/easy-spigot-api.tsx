@@ -14,7 +14,7 @@ const EasySpigotAPI: NextPage = () => {
 
 EasySpigotAPI.getInitialProps = async ({ res }) => {
   if (res && typeof window === "undefined") {
-    res.writeHead(302, { Location: Destination });
+    res.writeHead(301, { Location: Destination });
     res.end();
     return {};
   }

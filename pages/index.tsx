@@ -53,7 +53,7 @@ const Index = () => {
           _hover={{ textDecoration: "none" }}
           href={link}
         >
-          <Button w={200}>
+          <Button variant="outline" w={200}>
             <Flex align="center">
               <Icon as={icon} mr={2} />
               {title}

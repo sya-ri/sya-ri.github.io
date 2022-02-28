@@ -13,6 +13,7 @@ import {
   SiDiscord,
   SiGithub,
   SiInstagram,
+  SiKofi,
   SiTwitter,
 } from "react-icons/si";
 import { use100vh } from "../lib/100vh";
@@ -29,6 +30,7 @@ const links = [
   link(SiInstagram, "Instagram", "https://link.s7a.dev/instagram"),
   link(SiDiscord, "Discord", "https://link.s7a.dev/discord"),
   link(SiAmazon, "Amazon", "https://link.s7a.dev/amazon"),
+  link(SiKofi, "Ko-fi", "https://link.s7a.dev/ko-fi"),
 ];
 
 const Index = () => {

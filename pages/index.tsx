@@ -8,6 +8,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { IconType } from "react-icons";
+import { FiMail } from "react-icons/fi";
 import {
   SiAmazon,
   SiDiscord,
@@ -25,6 +26,7 @@ const link = (icon: IconType, title: string, link: string) => ({
 });
 
 const links = [
+  link(FiMail, "Email", "mailto:contact@s7a.dev"),
   link(SiTwitter, "Twitter", "https://link.s7a.dev/twitter"),
   link(SiGithub, "GitHub", "https://link.s7a.dev/github"),
   link(SiInstagram, "Instagram", "https://link.s7a.dev/instagram"),

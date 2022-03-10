@@ -21,7 +21,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <title>sya-ri</title>
-      <meta content="sya-ri's Portfolio" property="description" />
+      <meta content="sya-ri's Portfolio" name="description" />
       <GoogleAnalytics />
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />

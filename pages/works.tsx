@@ -17,7 +17,7 @@ const works = [
   work(
     "PackSquash",
     "Minecraftのリソースパックを圧縮するオープンソースプロジェクトです。コントリビューターとして携わり、現在はコアチームとして活動しています。",
-    ["cli", "github-actions", "minecraft", "rust"],
+    ["cli", "gh-actions", "minecraft", "rust"],
     ["ComunidadAylas", "PackSquash"]
   ),
   work(

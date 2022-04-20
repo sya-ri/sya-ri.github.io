@@ -7,7 +7,6 @@ import {
   Icon,
   Flex,
 } from "@chakra-ui/react";
-import { IconType } from "react-icons";
 import { FiMail } from "react-icons/fi";
 import {
   SiAmazon,
@@ -18,12 +17,7 @@ import {
   SiTwitter,
 } from "react-icons/si";
 import { use100vh } from "../lib/100vh";
-
-const link = (icon: IconType, title: string, link: string) => ({
-  icon,
-  title,
-  link,
-});
+import { link } from "../lib/Link";
 
 const links = [
   link(FiMail, "Email", "mailto:contact@s7a.dev"),

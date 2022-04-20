@@ -17,7 +17,7 @@ export type Tag =
   | "backend"
   | "cli"
   | "library"
-  | "github-actions"
+  | "gh-actions"
   | "minecraft"
   | "kotlin"
   | "react"
@@ -34,7 +34,7 @@ export const getTagIcon = (tag: Tag, props: IconProps): JSX.Element => {
       return <Icon as={GoTerminal} {...props} />;
     case "library":
       return <Icon as={FiPackage} {...props} />;
-    case "github-actions":
+    case "gh-actions":
       return <Icon as={SiGithubActions} {...props} />;
     case "minecraft":
       return <MinecraftIcon {...props} />;

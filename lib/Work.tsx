@@ -4,7 +4,7 @@ import { CgBrowser } from "react-icons/cg";
 import { FiPackage, FiServer } from "react-icons/fi";
 import { GoTerminal } from "react-icons/go";
 import {
-  SiGithubActions,
+  SiGithubactions,
   SiKotlin,
   SiNextdotjs,
   SiReact,
@@ -35,7 +35,7 @@ export const getTagIcon = (tag: Tag, props: IconProps): JSX.Element => {
     case "library":
       return <Icon as={FiPackage} {...props} />;
     case "gh-actions":
-      return <Icon as={SiGithubActions} {...props} />;
+      return <Icon as={SiGithubactions} {...props} />;
     case "minecraft":
       return <MinecraftIcon {...props} />;
     case "kotlin":

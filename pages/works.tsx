@@ -88,7 +88,7 @@ const Works = () => {
                 )}
               </HStack>
               <Box px={2}>
-                <HStack>
+                <HStack flexWrap="wrap" gap={2} spacing={0}>
                   {tags.map((tag) => (
                     <Tag key={tag}>
                       #{tag} {getTagIcon(tag, { ml: 1 })}

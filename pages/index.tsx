@@ -24,7 +24,7 @@ const links = [
   link(SiGithub, "GitHub", "https://link.s7a.dev/github"),
   link(SiInstagram, "Instagram", "https://link.s7a.dev/instagram"),
   link(SiDiscord, "Discord", "https://link.s7a.dev/discord"),
-  link(SiAmazon, "Amazon", "https://link.s7a.dev/),
+  link(SiAmazon, "Amazon", "https://link.s7a.dev/amazon"),
 ];
 
 const Index = () => {

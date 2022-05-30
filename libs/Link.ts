@@ -1,7 +1,9 @@
 import { IconType } from "react-icons";
 
-export interface Link {
+interface Link {
   icon: IconType;
   title: string;
   link: string;
 }
+
+export default Link;

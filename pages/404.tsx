@@ -2,7 +2,7 @@ import { Center, Icon, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { MdOutlineSentimentDissatisfied } from "react-icons/md";
 import BackToTop from "../components/BackToTop";
-import { use100vh } from "../lib/100vh";
+import use100vh from "../components/use100vh";
 
 const Page: NextPage = () => {
   const vh100 = use100vh();

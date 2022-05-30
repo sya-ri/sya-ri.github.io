@@ -10,7 +10,7 @@ import {
   SiReact,
   SiRust,
 } from "react-icons/si";
-import MinecraftIcon from "./MinecraftIcon";
+import MinecraftIcon from "../components/MinecraftIcon";
 
 export type Tag =
   | "frontend"
@@ -49,10 +49,12 @@ export const getTagIcon = (tag: Tag, props: IconProps): JSX.Element => {
   }
 };
 
-export interface Work {
+interface Work {
   title: string;
   description: string;
   tags: Tag[];
   github?: [string, string];
   youtube?: string;
 }
+
+export default Work;

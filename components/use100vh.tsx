@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const use100vh = (): number | null => {
+const use100vh = (): number | null => {
   const [height, setHeight] = useState<number | null>(measureHeight);
   const wasRenderedOnClientAtLeastOnce = useWasRenderedOnClientAtLeastOnce();
   useEffect(() => {
@@ -15,7 +15,7 @@ export const use100vh = (): number | null => {
   return wasRenderedOnClientAtLeastOnce ? height : null;
 };
 
-export const measureHeight = (): number | null => {
+const measureHeight = (): number | null => {
   if (!isClient()) return null;
   return window.innerHeight;
 };
@@ -32,3 +32,5 @@ const useWasRenderedOnClientAtLeastOnce = () => {
 
 const isClient = () =>
   typeof window !== "undefined" && typeof document !== "undefined";
+
+export default use100vh;

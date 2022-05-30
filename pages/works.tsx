@@ -39,7 +39,7 @@ const works = [
     ["sya-ri", "ktSpigot"]
   ),
   work(
-    "接触確認アプリ開発",
+    "接触確認アプリ",
     "コロナ禍で開催する文化祭のためにQRコードを使った接触確認アプリを1人で作りました。",
     ["frontend", "backend", "kotlin", "react"],
     ["sya-ri", "where-who-with"]

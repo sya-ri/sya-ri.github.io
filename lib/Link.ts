@@ -5,9 +5,3 @@ export interface Link {
   title: string;
   link: string;
 }
-
-export const link = (icon: IconType, title: string, link: string): Link => ({
-  icon,
-  title,
-  link,
-});

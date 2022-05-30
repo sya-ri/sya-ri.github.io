@@ -56,17 +56,3 @@ export interface Work {
   github?: [string, string];
   youtube?: string;
 }
-
-export const work = (
-  title: string,
-  description: string,
-  tags: Tag[],
-  github?: [string, string],
-  youtube?: string
-): Work => ({
-  title,
-  description,
-  tags,
-  github,
-  youtube,
-});

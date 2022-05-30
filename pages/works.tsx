@@ -11,52 +11,59 @@ import {
 } from "@chakra-ui/react";
 import { SiGithub, SiYoutube } from "react-icons/si";
 import BackToTop from "../components/BackToTop";
-import { getTagIcon, work } from "../lib/Work";
+import { getTagIcon, Work } from "../lib/Work";
 
-const works = [
-  work(
-    "PackSquash",
-    "Minecraftのリソースパックを圧縮するオープンソースプロジェクトです。コントリビューターとして携わり、現在はコアチームとして活動しています。",
-    ["cli", "gh-actions", "minecraft", "rust"],
-    ["ComunidadAylas", "PackSquash"]
-  ),
-  work(
-    "SpigotEventList",
-    "Minecraftプラグイン開発において必要不可欠なイベントの一覧です。たくさんの人に使っていただいています。",
-    ["frontend", "minecraft", "nextjs"],
-    ["sya-ri", "spigot-event-list"]
-  ),
-  work(
-    "EasySpigotAPI",
-    "Minecraftプラグインのためのライブラリです。便利ですが少し煩雑になってしまいました。",
-    ["library", "minecraft", "kotlin"],
-    ["sya-ri", "EasySpigotAPI"]
-  ),
-  work(
-    "ktSpigot",
-    "EasySpigotAPIの問題点を解消したライブラリです。現在開発中です。",
-    ["library", "minecraft", "kotlin"],
-    ["sya-ri", "ktSpigot"]
-  ),
-  work(
-    "接触確認アプリ",
-    "コロナ禍で開催する文化祭のためにQRコードを使った接触確認アプリを1人で作りました。",
-    ["frontend", "backend", "kotlin", "react"],
-    ["sya-ri", "where-who-with"]
-  ),
-  work(
-    "KGit",
-    "JGitのKotlinラッパーライブラリです。初めてOSSライブラリを開発しました。",
-    ["library", "kotlin"],
-    ["sya-ri", "KGit"]
-  ),
-  work(
-    "プラグイン依頼制作",
-    "Minecraftの配信者や動画投稿者向けにプラグインの依頼制作をしています。",
-    ["minecraft", "kotlin"],
-    undefined,
-    "https://youtube.com/playlist?list=PLWJAXP1sPvvRSzctW4dYdrm9S_cpcIM96"
-  ),
+const works: Work[] = [
+  {
+    title: "PackSquash",
+    description:
+      "Minecraftのリソースパックを圧縮するオープンソースプロジェクトです。コントリビューターとして携わり、現在はコアチームとして活動しています。",
+    tags: ["cli", "gh-actions", "minecraft", "rust"],
+    github: ["ComunidadAylas", "PackSquash"],
+  },
+  {
+    title: "SpigotEventList",
+    description:
+      "Minecraftプラグイン開発において必要不可欠なイベントの一覧です。たくさんの人に使っていただいています。",
+    tags: ["frontend", "minecraft", "nextjs"],
+    github: ["sya-ri", "spigot-event-list"],
+  },
+  {
+    title: "EasySpigotAPI",
+    description:
+      "Minecraftプラグインのためのライブラリです。便利ですが少し煩雑になってしまいました。",
+    tags: ["library", "minecraft", "kotlin"],
+    github: ["sya-ri", "EasySpigotAPI"],
+  },
+  {
+    title: "ktSpigot",
+    description:
+      "EasySpigotAPIの問題点を解消したライブラリです。現在開発中です。",
+    tags: ["library", "minecraft", "kotlin"],
+    github: ["sya-ri", "ktSpigot"],
+  },
+  {
+    title: "接触確認アプリ",
+    description:
+      "コロナ禍で開催する文化祭のためにQRコードを使った接触確認アプリを1人で作りました。",
+    tags: ["frontend", "backend", "kotlin", "react"],
+    github: ["sya-ri", "where-who-with"],
+  },
+  {
+    title: "KGit",
+    description:
+      "JGitのKotlinラッパーライブラリです。初めてOSSライブラリを開発しました。",
+    tags: ["library", "kotlin"],
+    github: ["sya-ri", "KGit"],
+  },
+  {
+    title: "プラグイン依頼制作",
+    description:
+      "Minecraftの配信者や動画投稿者向けにプラグインの依頼制作をしています。",
+    tags: ["minecraft", "kotlin"],
+    youtube:
+      "https://youtube.com/playlist?list=PLWJAXP1sPvvRSzctW4dYdrm9S_cpcIM96",
+  },
 ];
 
 const Works = () => {

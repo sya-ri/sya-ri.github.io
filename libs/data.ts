@@ -4,7 +4,6 @@ import {
   SiDiscord,
   SiGithub,
   SiInstagram,
-  SiKofi,
   SiTwitter,
 } from "react-icons/si";
 import Link from "./Link";
@@ -21,7 +20,6 @@ export const links: Link[] = [
   },
   { icon: SiDiscord, title: "Discord", link: "https://link.s7a.dev/discord" },
   { icon: SiAmazon, title: "Amazon", link: "https://link.s7a.dev/amazon" },
-  { icon: SiKofi, title: "Ko-fi", link: "https://link.s7a.dev/ko-fi" },
 ];
 
 export const works: Work[] = [

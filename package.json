@@ -10,7 +10,7 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
-    "@chakra-ui/react": "2.5.2",
+    "@chakra-ui/react": "2.5.3",
     "@emotion/react": "11.10.6",
     "@emotion/styled": "11.10.6",
     "framer-motion": "10.8.5",

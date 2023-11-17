@@ -1,7 +1,6 @@
 import { FiMail } from "react-icons/fi";
 import {
   SiAmazon,
-  SiDiscord,
   SiGithub,
   SiInstagram,
   SiTwitter,
@@ -18,7 +17,6 @@ export const links: Link[] = [
     title: "Instagram",
     link: "https://link.s7a.dev/instagram",
   },
-  { icon: SiDiscord, title: "Discord", link: "https://link.s7a.dev/discord" },
   { icon: SiAmazon, title: "Amazon", link: "https://link.s7a.dev/amazon" },
 ];
 

@@ -1345,10 +1345,10 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.182.tgz#05301a4d5e62963227eaafe0ce04dd77c54ea5c2"
   integrity sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==
 
-"@types/node@22.16.0":
-  version "22.16.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.16.0.tgz#352bc4951fd089df32f2b6412a61d339b67ded8b"
-  integrity sha512-B2egV9wALML1JCpv3VQoQ+yesQKAmNMBIAY7OteVrikcOcAkWm+dGL6qpeCktPjAv6N1JLnhbNiqS35UpFyBsQ==
+"@types/node@22.16.2":
+  version "22.16.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.16.2.tgz#0a7b5b852105fb3f5019134f87fa859d5abcab9b"
+  integrity sha512-Cdqa/eJTvt4fC4wmq1Mcc0CPUjp/Qy2FGqLza3z3pKymsI969TcZ54diNJv8UYUgeWxyb8FSbCkhdR6WqmUFhA==
   dependencies:
     undici-types "~6.21.0"
 

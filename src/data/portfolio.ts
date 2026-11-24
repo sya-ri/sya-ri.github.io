@@ -29,7 +29,7 @@ export type Example =
     };
 export interface Library extends Work {
   description: string;
-  layout?: "paired" | "stacked";
+  layout?: "stacked";
   examples: Example[];
 }
 
@@ -135,7 +135,6 @@ export const libraries: Library[] = [
   {
     slug: "ktconfig",
     name: "ktConfig",
-    layout: "paired",
     github: "https://github.com/sya-ri/ktConfig",
     description:
       "Define your settings once in a Kotlin data class. ktConfig reads and writes the matching YAML for Bukkit plugins and Fabric mods.",

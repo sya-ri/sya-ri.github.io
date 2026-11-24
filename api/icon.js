@@ -26,8 +26,8 @@ export default async function icon(request, response) {
   const [, body, eye, background, extension] = match;
   const png = extension.toLowerCase() === "png";
   const svg = artwork
-    .replaceAll("var(--body,#bbbbbb)", `#${body}`)
-    .replaceAll("var(--outline,#343238)", `#${eye}`)
+    .replace(/var\(--body,#[\da-f]{6}\)/gi, `#${body}`)
+    .replace(/var\(--outline,#[\da-f]{6}\)/gi, `#${eye}`)
     .replace("var(--icon-bg,none)", background ? `#${background}` : "none");
 
   response.setHeader("Content-Type", png ? "image/png" : "image/svg+xml; charset=utf-8");

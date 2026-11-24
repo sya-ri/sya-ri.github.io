@@ -205,7 +205,6 @@ button:focus-visible,
   width: 100%;
   height: auto;
   --body: var(--coat);
-  --outline: var(--graphite);
 }
 [data-coat="blue"] .portrait-switch g[data-fill="outline"] {
   --outline: light-dark(var(--chalk), var(--graphite));
@@ -264,13 +263,14 @@ button:focus-visible,
   margin-top: 0.65em;
 }
 .library-description {
+  margin-block: 12px 18px;
   max-width: 74ch;
 }
 .project-preview {
   display: block;
   justify-self: start;
   width: 100%;
-  max-width: 350px;
+  max-width: 525px;
   height: auto;
   object-fit: contain;
   border-radius: 3px;
@@ -282,14 +282,11 @@ button:focus-visible,
 .examples {
   display: grid;
   align-items: start;
-  gap: clamp(16px, 3vw, 40px);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
   min-width: 0;
 }
-.examples.paired {
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-}
-.examples.stacked {
-  grid-template-columns: minmax(0, 1fr);
+#strata .examples {
   gap: 8px;
 }
 .stacked .example-image {
@@ -310,7 +307,7 @@ button:focus-visible,
   max-width: 510px;
 }
 .work.library {
-  gap: 12px;
+  gap: 0;
 }
 .code-pane {
   min-width: 0;
@@ -341,12 +338,8 @@ button:focus-visible,
   overflow-wrap: normal;
 }
 @media (max-width: 650px) {
-  .examples.paired {
-    grid-template-columns: minmax(0, 1fr);
-  }
   .project-preview {
-    width: 78%;
-    max-width: 300px;
+    max-width: 450px;
   }
   .example-image {
     padding-top: 0;

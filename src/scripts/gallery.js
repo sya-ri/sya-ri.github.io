@@ -4,6 +4,7 @@ const reader = root.querySelector(".reader"),
 const preference = matchMedia("(prefers-reduced-motion: reduce)");
 
 const colors = [
+  ["mint", "mint"],
   ["silver", "silver"],
   ["blue", "blue"],
   ["teal", "teal"],
@@ -38,7 +39,6 @@ function cycleCoat() {
 }
 colorButtons.forEach((button) => button.addEventListener("click", cycleCoat));
 
-player.style.setProperty("--atlas", 'url("/images/shari-mask.png")');
 const unit = 3.125;
 const px = (n) => n * unit + "px";
 const make = (parent, cls) => {
@@ -47,53 +47,40 @@ const make = (parent, cls) => {
   parent.append(el);
   return el;
 };
-function shell(joint, w, h, d, u, v, extra) {
-  const box = make(joint, "cube");
-  const width = w + extra,
-    height = h + extra,
-    depth = d + extra;
-  Object.assign(box.style, {
-    left: px(-extra / 2),
-    top: px(-extra / 2),
-    width: px(width),
-    height: px(height),
-  });
-  function face(fw, fh, tw, th, x, y, rotation, z, shade) {
-    const f = make(box, "face");
-    Object.assign(f.style, {
-      width: px(fw),
-      height: px(fh),
-      left: px((width - fw) / 2),
-      top: px((height - fh) / 2),
-      transform: rotation + " translateZ(" + px(z / 2) + ")",
-      backgroundSize: px((64 * fw) / tw) + " " + px((64 * fh) / th),
-      backgroundPosition: px((-x * fw) / tw) + " " + px((-y * fh) / th),
-      filter: "brightness(calc(" + shade + " * var(--limb-light, 1)))",
-    });
-    f.style.maskSize = f.style.backgroundSize;
-    f.style.maskPosition = f.style.backgroundPosition;
-  }
-  face(width, height, w, h, u + d, v + d, "rotateY(0deg)", depth, 1);
-  face(depth, height, d, h, u + d + w, v + d, "rotateY(90deg)", width, 0.82);
-  face(depth, height, d, h, u, v + d, "rotateY(-90deg)", width, 0.89);
-  face(width, height, w, h, u + 2 * d + w, v + d, "rotateY(180deg)", depth, 0.82);
-  face(width, depth, w, d, u + d, v, "rotateX(90deg)", height, 1.05);
-  face(width, depth, w, d, u + d + w, v, "rotateX(-90deg)", height, 0.76);
-}
-function part(x, y, w, h, d, uv, outer, extra) {
+// The skin has an opaque base and no outer layer.
+function part(x, y, w, h, d, u, v) {
   const joint = make(player, "joint");
   Object.assign(joint.style, { left: px(x), top: px(y), width: px(w), height: px(h) });
-  shell(joint, w, h, d, ...uv, 0);
-  shell(joint, w, h, d, ...outer, extra);
+
+  function face(fw, fh, tx, ty, rotation, depth, light) {
+    const surface = make(joint, "face");
+    Object.assign(surface.style, {
+      width: px(fw),
+      height: px(fh),
+      left: px((w - fw) / 2),
+      top: px((h - fh) / 2),
+      // A small overlap keeps subpixel gaps from exposing the page between faces.
+      transform: rotation + " translateZ(" + px(depth / 2) + ") scale(1.012)",
+      backgroundSize: px(64) + " " + px(64),
+      backgroundPosition: px(-tx) + " " + px(-ty),
+      filter: "brightness(" + light + ")",
+    });
+  }
+  face(w, h, u + d, v + d, "rotateY(0deg)", d, 1);
+  face(d, h, u + d + w, v + d, "rotateY(90deg)", w, 0.82);
+  face(d, h, u, v + d, "rotateY(-90deg)", w, 0.89);
+  face(w, h, u + 2 * d + w, v + d, "rotateY(180deg)", d, 0.82);
+  face(w, d, u + d, v, "rotateX(90deg)", h, 1.05);
+  face(w, d, u + d + w, v, "rotateX(-90deg)", h, 0.76);
   return joint;
 }
-const head = part(4, 0, 8, 8, 8, [0, 0], [32, 0], 0.68);
+const head = part(4, 0, 8, 8, 8, 0, 0);
 head.style.transformOrigin = "50% 100%";
-part(4, 8, 8, 12, 4, [16, 16], [16, 32], 0.3);
-const rightArm = part(0, 8, 4, 12, 4, [40, 16], [40, 32], 0.3);
-const leftArm = part(12, 8, 4, 12, 4, [32, 48], [48, 48], 0.3);
-const rightLeg = part(4, 20, 4, 12, 4, [0, 16], [0, 32], 0.26);
-const leftLeg = part(8, 20, 4, 12, 4, [16, 48], [0, 48], 0.26);
+part(4, 8, 8, 12, 4, 16, 16);
+const rightArm = part(0, 8, 4, 12, 4, 40, 16);
+const leftArm = part(12, 8, 4, 12, 4, 32, 48);
+const rightLeg = part(4, 20, 4, 12, 4, 0, 16);
+const leftLeg = part(8, 20, 4, 12, 4, 16, 48);
 const wingLeft = make(player, "elytra wing-left"),
   wingRight = make(player, "elytra wing-right");
 for (const wing of [wingLeft, wingRight]) make(wing, "wing-core");
@@ -201,10 +188,6 @@ function pose() {
   leftLeg.style.transform =
     "translateY(" + (passing > 0 ? -lift : 0) + "px) rotateX(" + stride * 34 + "deg)";
   const facing = yaw / profileAngle;
-  for (const limb of [rightArm, rightLeg])
-    limb.style.setProperty("--limb-light", 0.95 + 0.05 * facing);
-  for (const limb of [leftArm, leftLeg])
-    limb.style.setProperty("--limb-light", 0.95 - 0.05 * facing);
   if (!idle)
     head.style.transform = "rotateX(" + 84 * glide + "deg) rotateY(" + headTurn * facing + "deg)";
 }

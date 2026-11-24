@@ -26,7 +26,7 @@ The order of the entries in `src/data/portfolio.ts` sets their order on the site
 
 Request `/icon-BODY-EYE[-BACKGROUND].svg` or `.png` with three- or six-digit hex colors and no leading `#`. The first color fills the body. The second colors the eyes, mouth, and outline. Omit the third color for transparency.
 
-- `/icon-bbb-343238.svg` returns the original gray character on a transparent background.
+- `/icon-84c5ad-253538.svg` returns the default mint character on a transparent background.
 - `/icon-84c5ad-253538-fff.png` returns a mint character on white.
 
 SVGs use the original 800 × 800 viewBox. PNGs match the supplied artwork at 750 × 750 with transparency and 1600 × 1600 with a background. Run `pnpm dev` to try the icon URLs locally.

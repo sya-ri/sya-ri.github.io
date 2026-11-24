@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" role="img" aria-label="sya-ri">
   <rect width="800" height="800" fill="var(--icon-bg,none)" />
-  <path fill="var(--body,#bbbbbb)" stroke="var(--outline,#343238)" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" d="M438 201.36c92.4 0 146.16 38.64 146.16 114.24 0 137.76-71.696 113.019-49.16 155.4 7.512 14.127-5 24-5 49v112c0 32-15 50-40 50s-34-16-34-40c0-13-8-20-18-20s-18 7-18 20c0 24-9 40-34 40s-40-18-40-50V520c0-25-12.512-34.873-5-49 22.536-42.381-49.16-17.64-49.16-155.4 0-75.6 53.76-114.24 146.16-114.24" data-fill="body" data-stroke="outline" transform="translate(-134.36 -138.85)scale(1.22)" />
-  <path fill="var(--body,#bbbbbb)" stroke="var(--outline,#343238)" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" d="M-31 0v70a31 31 0 0 0 62 0V0" data-fill="body" data-stroke="outline" transform="rotate(28 -751.971 858.567)scale(1.22)" />
-  <path fill="var(--body,#bbbbbb)" stroke="var(--outline,#343238)" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" d="M31 0v70a31 31 0 0 1-62 0V0" data-fill="body" data-stroke="outline" transform="rotate(-28 1151.971 -745.746)scale(1.22)" />
-  <g fill="var(--outline,#343238)" data-fill="outline" transform="translate(400 260.53)scale(1.22)">
+  <path fill="var(--body,#84c5ad)" stroke="var(--outline,#253538)" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" d="M438 201.36c92.4 0 146.16 38.64 146.16 114.24 0 137.76-71.696 113.019-49.16 155.4 7.512 14.127-5 24-5 49v112c0 32-15 50-40 50s-34-16-34-40c0-13-8-20-18-20s-18 7-18 20c0 24-9 40-34 40s-40-18-40-50V520c0-25-12.512-34.873-5-49 22.536-42.381-49.16-17.64-49.16-155.4 0-75.6 53.76-114.24 146.16-114.24" data-fill="body" data-stroke="outline" transform="translate(-134.36 -138.85)scale(1.22)" />
+  <path fill="var(--body,#84c5ad)" stroke="var(--outline,#253538)" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" d="M-31 0v70a31 31 0 0 0 62 0V0" data-fill="body" data-stroke="outline" transform="rotate(28 -751.971 858.567)scale(1.22)" />
+  <path fill="var(--body,#84c5ad)" stroke="var(--outline,#253538)" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" d="M31 0v70a31 31 0 0 1-62 0V0" data-fill="body" data-stroke="outline" transform="rotate(-28 1151.971 -745.746)scale(1.22)" />
+  <g fill="var(--outline,#253538)" data-fill="outline" transform="translate(400 260.53)scale(1.22)">
     <circle cx="-10.08" cy="-30.24" r="8" />
     <circle cx="50.4" cy="-30.24" r="8" />
-    <path fill="none" stroke="var(--outline,#343238)" stroke-linecap="round" stroke-width="8" d="M-15.12 30.24h30.24" data-stroke="outline" />
+    <path fill="none" stroke="var(--outline,#253538)" stroke-linecap="round" stroke-width="8" d="M-15.12 30.24h30.24" data-stroke="outline" />
   </g>
 </svg>

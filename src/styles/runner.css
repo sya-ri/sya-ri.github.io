@@ -67,6 +67,9 @@
   white-space: nowrap;
 }
 #portfolio {
+  --coat: #84c5ad;
+}
+#portfolio[data-coat="silver"] {
   --coat: light-dark(#727a80, #c8cfd3);
 }
 #portfolio[data-coat="blue"] {
@@ -90,15 +93,6 @@
   width: 0;
   height: 0;
 }
-#portfolio .shade {
-  position: absolute;
-  width: 38px;
-  height: 3px;
-  left: -19px;
-  top: -2px;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--ink) 20%, transparent);
-}
 #portfolio .player {
   position: absolute;
   bottom: 2px;
@@ -108,12 +102,9 @@
   transform-style: preserve-3d;
   transform-origin: 50% 96%;
 }
-#portfolio .joint,
-#portfolio .cube {
+#portfolio .joint {
   position: absolute;
   transform-style: preserve-3d;
-}
-#portfolio .joint {
   transform-origin: 50% 0;
 }
 #portfolio .face {
@@ -123,7 +114,4 @@
   background-color: var(--coat);
   background-image: url("/images/shari-skin.png");
   background-repeat: no-repeat;
-  mask-image: var(--atlas);
-  mask-mode: alpha;
-  mask-repeat: no-repeat;
 }

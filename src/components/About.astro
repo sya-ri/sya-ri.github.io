@@ -1,0 +1,38 @@
+---
+import portrait from "../assets/sya-ri.svg?raw";
+---
+
+<article id="about" class="work about" data-section="about" aria-labelledby="name">
+  <div class="bio">
+    <h1 id="name">sya_ri</h1>
+    <p class="role">
+      <span>Minecraft Plugin Developer</span> / <span>Fullstack Engineer</span>
+    </p>
+    <div class="socials">
+      <a
+        href="https://x.com/sya_ri_dayo"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="sya_ri_dayo on X"
+      >
+        <span class="social-mark x-mark" aria-hidden="true"></span>@sya_ri_dayo
+      </a>
+      <a
+        href="https://github.com/sya-ri"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="sya-ri on GitHub"
+      >
+        <span class="social-mark github-mark" aria-hidden="true"></span>sya-ri
+      </a>
+    </div>
+  </div>
+  <button
+    type="button"
+    class="portrait-switch"
+    data-color-switch
+    aria-label="Change sya-ri’s color"
+  >
+    <Fragment set:html={portrait} />
+  </button>
+</article>

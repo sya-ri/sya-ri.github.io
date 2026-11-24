@@ -1,0 +1,11 @@
+$ npx minecraft-skills minecraft pack-format 1.21.11 datapack
+{
+  "schemaVersion": 1,
+  "edition": "java",
+  "version": "1.21.11",
+  "releaseTime": "2025-12-09T12:23:30+00:00",
+  "domain": "datapack",
+  "format": 94,
+  "minor": 1,
+  "status": "extracted"
+}

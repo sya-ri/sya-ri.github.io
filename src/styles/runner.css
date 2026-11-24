@@ -1,0 +1,117 @@
+/* Worn elytra, Java 1.21.11: the two textured plates hinge at the shoulders. */
+#portfolio .elytra {
+  position: absolute;
+  display: none;
+  width: 34px;
+  height: 64px;
+  top: 24px;
+  transform-style: preserve-3d;
+  --wing-skin: url("/images/elytra.png");
+}
+#portfolio[data-trip="fly"] .elytra {
+  display: block;
+}
+#portfolio .elytra::before,
+#portfolio .elytra::after,
+#portfolio .wing-core {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--wing-skin) center/100% 100% no-repeat;
+  image-rendering: pixelated;
+  backface-visibility: visible;
+}
+#portfolio .wing-core {
+  transform: scaleX(var(--wing-mirror));
+}
+#portfolio .elytra::before {
+  transform: translateZ(-1px) scaleX(var(--wing-mirror));
+  filter: brightness(1.22);
+}
+#portfolio .elytra::after {
+  transform: translateZ(1px) scaleX(var(--wing-mirror));
+}
+#portfolio .wing-left {
+  left: 9px;
+  transform-origin: 0 0;
+  --wing-mirror: -1;
+}
+#portfolio .wing-right {
+  left: 7px;
+  transform-origin: 100% 0;
+  --wing-mirror: 1;
+}
+#portfolio .skin-switch {
+  position: absolute;
+  left: -28px;
+  bottom: 0;
+  width: 56px;
+  height: 108px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  pointer-events: auto;
+  border-radius: 8px;
+}
+#portfolio .skin-switch:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+#portfolio .swatch-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+#portfolio {
+  --coat: #84c5ad;
+}
+#portfolio[data-coat="silver"] {
+  --coat: light-dark(#727a80, #c8cfd3);
+}
+#portfolio[data-coat="blue"] {
+  --coat: var(--accent);
+}
+#portfolio[data-coat="teal"] {
+  --coat: light-dark(#3a7d72, #8ed6bb);
+}
+#portfolio[data-coat="pink"] {
+  --coat: light-dark(#a45b72, #f4afbc);
+}
+#portfolio[data-coat="purple"] {
+  --coat: light-dark(#81629b, #cab0ea);
+}
+#portfolio .traveler {
+  position: absolute;
+  left: clamp(42px, 8%, 62px);
+  bottom: calc(var(--floor) + 4px);
+  transform: scale(0.86);
+  transform-origin: 0 0;
+  width: 0;
+  height: 0;
+}
+#portfolio .player {
+  position: absolute;
+  bottom: 2px;
+  left: -25px;
+  width: 50px;
+  height: 100px;
+  transform-style: preserve-3d;
+  transform-origin: 50% 96%;
+}
+#portfolio .joint {
+  position: absolute;
+  transform-style: preserve-3d;
+  transform-origin: 50% 0;
+}
+#portfolio .face {
+  position: absolute;
+  image-rendering: pixelated;
+  backface-visibility: hidden;
+  background-color: var(--coat);
+  background-image: url("/images/shari-skin.png");
+  background-repeat: no-repeat;
+}

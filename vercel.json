@@ -1,0 +1,40 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "buildCommand": "pnpm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/works",
+      "destination": "/#projects",
+      "permanent": true
+    },
+    {
+      "source": "/easy-spigot-api",
+      "destination": "https://gh.s7a.dev/EasySpigotAPI",
+      "permanent": true
+    },
+    {
+      "source": "/spigot-event-list",
+      "destination": "https://spigot-event-list.s7a.dev",
+      "permanent": true
+    }
+  ],
+  "installCommand": "pnpm install --frozen-lockfile",
+  "build": {
+    "env": {
+      "ENABLE_EXPERIMENTAL_COREPACK": "1"
+    }
+  },
+  "functions": {
+    "api/icon.js": {
+      "includeFiles": "src/assets/sya-ri.svg"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/icon-:variant",
+      "destination": "/api/icon?variant=:variant"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+---
+import WorkHeading from "./WorkHeading.astro";
+import { highlight } from "../lib/highlight";
+import type { Library } from "../data/portfolio";
+interface Props {
+  library: Library;
+}
+const { library } = Astro.props;
+const stacked = library.layout === "stacked";
+---
+
+<article
+  class="work library"
+  id={library.slug}
+  data-section="libraries"
+  aria-labelledby={`heading-${library.slug}`}
+>
+  <WorkHeading work={library} />
+  <p class="library-description">{library.description}</p>
+  <div class:list={["examples", library.layout]}>
+    {library.examples.map(async (example) =>
+      example.kind === "image" ? (
+        <figure class="example-image">
+          <img src={example.src} alt={example.alt} />
+        </figure>
+      ) : (
+        <figure class="code-pane">
+          <div
+            class:list={[{ "code-scroll": stacked }]}
+            tabindex={stacked ? 0 : undefined}
+            role={stacked ? "region" : undefined}
+            aria-label={stacked ? `${library.name} code example` : undefined}
+            set:html={await highlight(example)}
+          />
+        </figure>
+      ),
+    )}
+  </div>
+</article>

@@ -1,4 +1,4 @@
-$ pnpm dlx minecraft-skills minecraft pack-format 1.21.11 datapack
+$ npx minecraft-skills minecraft pack-format 1.21.11 datapack
 {
   "schemaVersion": 1,
   "edition": "java",

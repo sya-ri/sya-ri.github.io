@@ -12,26 +12,12 @@
   --graphite: #20272b;
   --blue: #284ea2;
   --sky: #a9c4ff;
-  --ochre: #79521a;
-  --wheat: #f1cb82;
   --paper: light-dark(var(--chalk), var(--graphite));
   --ink: light-dark(var(--graphite), var(--chalk));
   --accent: light-dark(var(--blue), var(--sky));
-  --literal: light-dark(var(--ochre), var(--wheat));
   --muted: color-mix(in srgb, var(--ink) 76%, var(--paper));
   --line: color-mix(in srgb, var(--ink) 24%, var(--paper));
   --keyline: color-mix(in srgb, var(--ink) 56%, var(--paper));
-  --code-foreground: var(--ink);
-  --code-background: transparent;
-  --code-token-constant: var(--literal);
-  --code-token-string: var(--literal);
-  --code-token-string-expression: var(--literal);
-  --code-token-comment: var(--muted);
-  --code-token-keyword: var(--ink);
-  --code-token-function: var(--accent);
-  --code-token-parameter: var(--ink);
-  --code-token-punctuation: var(--muted);
-  --code-token-link: var(--accent);
   font-family: "DM Sans", system-ui, sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -345,7 +331,7 @@ button:focus-visible,
 }
 .code-pane pre {
   white-space: pre-wrap;
-  padding: clamp(12px, 1.8vw, 24px) 0;
+  padding: clamp(12px, 1.8vw, 24px);
   overflow-wrap: anywhere;
   font:
     400 clamp(0.8125rem, 1.22vw, 1rem)/1.5 "IBM Plex Mono",
@@ -360,13 +346,14 @@ button:focus-visible,
   overflow-x: auto;
 }
 .code-scroll pre {
+  width: max-content;
+  min-width: 100%;
   white-space: pre;
   overflow-wrap: normal;
 }
 .code-pane .long-code {
   max-height: clamp(245px, 46svh, 440px);
   overflow-y: auto;
-  padding-right: 6px;
   scrollbar-width: thin;
   scrollbar-color: var(--keyline) var(--paper);
 }

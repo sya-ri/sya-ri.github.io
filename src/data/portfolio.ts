@@ -25,7 +25,7 @@ export type Example =
   | {
       kind: "code";
       label: string;
-      language: "kotlin" | "shellsession" | "cpp" | "yaml";
+      language: "kotlin" | "shell-json" | "cpp" | "yaml";
       code: string;
       scroll?: boolean;
     };
@@ -101,7 +101,7 @@ export const libraries: Library[] = [
   {
     slug: "strata",
     name: "Strata",
-    layout: "paired",
+    layout: "stacked",
     website: "https://gh.s7a.dev/strata/demos/",
     github: "https://github.com/sya-ri/strata",
     description:
@@ -131,7 +131,7 @@ export const libraries: Library[] = [
       {
         kind: "code",
         label: "Terminal",
-        language: "shellsession",
+        language: "shell-json",
         code: minecraftSkillsExample,
       },
     ],

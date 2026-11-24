@@ -1,23 +1,19 @@
+import { FaAmazon, FaTwitter } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
-import {
-  SiAmazon,
-  SiGithub,
-  SiInstagram,
-  SiTwitter,
-} from "react-icons/si";
+import { SiGithub, SiInstagram } from "react-icons/si";
 import Link from "./Link";
 import Work from "./Work";
 
 export const links: Link[] = [
   { icon: FiMail, title: "Email", link: "mailto:contact@s7a.dev" },
-  { icon: SiTwitter, title: "Twitter", link: "https://link.s7a.dev/twitter" },
+  { icon: FaTwitter, title: "Twitter", link: "https://link.s7a.dev/twitter" },
   { icon: SiGithub, title: "GitHub", link: "https://link.s7a.dev/github" },
   {
     icon: SiInstagram,
     title: "Instagram",
     link: "https://link.s7a.dev/instagram",
   },
-  { icon: SiAmazon, title: "Amazon", link: "https://link.s7a.dev/amazon" },
+  { icon: FaAmazon, title: "Amazon", link: "https://link.s7a.dev/amazon" },
 ];
 
 export const works: Work[] = [

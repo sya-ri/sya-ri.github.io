@@ -13,7 +13,13 @@ const { work } = Astro.props;
   </h2>
   <div class="work-links">
     {work.website && (
-      <a href={work.website} aria-label={`${work.name} website`} title="Website">
+      <a
+        href={work.website}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${work.name} website`}
+        title="Website"
+      >
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -28,7 +34,13 @@ const { work } = Astro.props;
       </a>
     )}
     {work.github && (
-      <a href={work.github} aria-label={`${work.name} on GitHub`} title="GitHub">
+      <a
+        href={work.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${work.name} on GitHub`}
+        title="GitHub"
+      >
         <span class="social-mark github-mark" aria-hidden="true"></span>
       </a>
     )}

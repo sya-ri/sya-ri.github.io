@@ -10,7 +10,7 @@ import "../styles/runner.css";
 
 const title = "sya_ri — Minecraft Plugin Developer / Fullstack Engineer";
 const description =
-  "Explore sya_ri’s Minecraft projects, audio tools, and open-source libraries, with working examples and in-game previews.";
+  "A look at what I build for Minecraft players and plugin developers, plus a microphone mixer and a few projects that reach beyond the game.";
 const canonical = new URL("/", Astro.site);
 const sharingImage = new URL("/images/portfolio.png", canonical);
 ---
@@ -34,7 +34,7 @@ const sharingImage = new URL("/images/portfolio.png", canonical);
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="sya_ri, Minecraft Plugin Developer and Fullstack Engineer, beside Shari."
+      content="sya_ri’s name and job title beside Shari, a Minecraft character."
     />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
@@ -43,21 +43,25 @@ const sharingImage = new URL("/images/portfolio.png", canonical);
       <header class="signature">
         <span>sya_ri</span>
         <nav aria-label="Portfolio sections" class="section-nav">
-          <a href="#about" aria-current="location">
+          <a data-section="about" href="#about" aria-current="location">
             About
           </a>
-          <a href="#projects">Projects</a>
-          <a href="#libraries">Libraries</a>
+          <a data-section="projects" href={`#${projects[0].slug}`}>
+            Projects
+          </a>
+          <a data-section="libraries" href={`#${libraries[0].slug}`}>
+            Libraries
+          </a>
         </nav>
       </header>
       <main class="reader" aria-label="Portfolio" tabindex="0">
         <div class="work-grid">
           <About />
-          {projects.map((project, index) => (
-            <ProjectSlide project={project} first={index === 0} />
+          {projects.map((project) => (
+            <ProjectSlide project={project} />
           ))}
-          {libraries.map((library, index) => (
-            <LibrarySlide library={library} first={index === 0} />
+          {libraries.map((library) => (
+            <LibrarySlide library={library} />
           ))}
         </div>
         <Traveler />

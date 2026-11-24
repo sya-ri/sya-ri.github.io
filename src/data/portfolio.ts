@@ -1,13 +1,11 @@
 import strataExample from "../examples/strata/playerRow.kt?raw";
-import minecraftSkillsExample from "../examples/minecraft-skills/pack-format.sh?raw";
-import minecraftSkillsOutput from "../examples/minecraft-skills/output.json?raw";
+import minecraftSkillsExample from "../examples/minecraft-skills/pack-format.console?raw";
 import ktconfigExample from "../examples/ktconfig/ServerConfig.kt?raw";
 import ktconfigOutput from "../examples/ktconfig/config.yml?raw";
 import ktinventoryExample from "../examples/ktinventory/SimpleMenu.kt?raw";
 import ktadvancementsExample from "../examples/ktadvancements/TestAdvancement.kt?raw";
 import minecraftServerGradlePluginExample from "../examples/minecraft-server-gradle-plugin/build.gradle.kts?raw";
 import kgitExample from "../examples/kgit/clone.kt?raw";
-import kgitOutput from "../examples/kgit/clone.sh?raw";
 import halExtensionExample from "../examples/hal-extension/motor.cpp?raw";
 
 export interface Work {
@@ -27,9 +25,8 @@ export type Example =
   | {
       kind: "code";
       label: string;
-      language: "kotlin" | "bash" | "cpp" | "json" | "yaml";
+      language: "kotlin" | "shellsession" | "cpp" | "yaml";
       code: string;
-      source?: string;
       scroll?: boolean;
     };
 export interface Library extends Work {
@@ -42,14 +39,14 @@ export const projects: Project[] = [
     slug: "mineportal",
     name: "MinePortal",
     website: "https://mineportal.jp/servers",
-    summary: "A server list for anyone who plays Minecraft.",
+    summary: "Looking for a Minecraft server to join?",
     description:
-      "Browse by game mode and see how many players are online. Open a server’s listing to decide where to play next.",
+      "Browse survival worlds and minigame servers for Java or Bedrock. Each listing shows what you can play and how many people are online.",
     image: {
       src: "/images/mineportal.webp",
-      alt: "Purple MinePortal wordmark and cube on a pale background.",
-      width: 1100,
-      height: 578,
+      alt: "The MinePortal home page, with its purple cube above a Minecraft cherry grove.",
+      width: 1884,
+      height: 1023,
     },
   },
   {
@@ -57,13 +54,12 @@ export const projects: Project[] = [
     name: "Spigot Event List",
     website: "https://spigot-event-list.s7a.dev/en",
     github: "https://github.com/sya-ri/spigot-event-list",
-    summary:
-      "A searchable guide to Minecraft plugin events for Bukkit, Spigot, Paper, Purpur, BungeeCord, and Velocity.",
+    summary: "Which event fires when a player joins a server?",
     description:
-      "Search for “join” to see which event fires when a player connects and which platforms support it.",
+      "Search for “join” to find the event your plugin needs. Check which servers and proxies support it, or switch versions to see when it was available.",
     image: {
       src: "/images/spigot-event-list.webp",
-      alt: "A white tap above the name Spigot Event List on a dark background.",
+      alt: "A white faucet above the Spigot Event List wordmark.",
       width: 1100,
       height: 578,
     },
@@ -73,12 +69,12 @@ export const projects: Project[] = [
     name: "Minecraft Inventory",
     website: "https://minecraft-inventory.s7a.dev/",
     github: "https://github.com/sya-ri/minecraft-inventory",
-    summary: "A browser editor for Minecraft inventories.",
+    summary: "Design a chest menu or share a crafting recipe without opening Minecraft.",
     description:
-      "Choose a chest or a crafting table, click a slot to add an item, and drag items into place. Download the finished layout as an image.",
+      "Pick a layout, drag the items into place, and save it as a PNG. Three iron ingots and two sticks make the pickaxe shown here.",
     image: {
       src: "/images/minecraft-inventory.png",
-      alt: "Iron pickaxe recipe with three iron ingots across the top and two sticks down the middle.",
+      alt: "Three iron ingots across the top and two sticks down the middle make an iron pickaxe.",
       width: 512,
       height: 264,
     },
@@ -88,14 +84,14 @@ export const projects: Project[] = [
     name: "Orvia",
     website: "https://orvia.s7a.dev/#listen",
     github: "https://github.com/orvia-audio/orvia",
-    summary: "A real-time microphone mixer for Windows, macOS, and Linux.",
+    summary: "Orvia gives you control over how your microphone sounds.",
     description:
-      "Turn down keyboard noise, adjust your mic volume, and choose which apps receive the mix.",
+      "Listen through headphones as you adjust the gain and filter out background noise. The mixer runs on Windows, macOS, and Linux.",
     image: {
       src: "/images/orvia.webp",
-      alt: "Orvia’s orange rings and wordmark above the words ‘Real-time microphone mixer’.",
-      width: 1100,
-      height: 578,
+      alt: "Orvia’s mixer shows the mic signal before and after noise suppression.",
+      width: 830,
+      height: 640,
     },
   },
 ];
@@ -107,7 +103,7 @@ export const libraries: Library[] = [
     website: "https://gh.s7a.dev/strata/demos/",
     github: "https://github.com/sya-ri/strata",
     description:
-      "Declarative Minecraft UI with reusable component trees, version-independent layout and state, and headless testing without launching Minecraft.",
+      "Build Minecraft screens from reusable Kotlin components. You can test their layout and state without starting the game.",
     logo: "/images/strata-icon.webp",
     examples: [
       {
@@ -115,13 +111,11 @@ export const libraries: Library[] = [
         label: "playerRow",
         language: "kotlin",
         code: strataExample,
-        source:
-          "https://github.com/sya-ri/strata/blob/5788595ce021441595abc5fcb8beff21e6d83fd9/integration/docs/src/readmeExamples/kotlin/dev/s7a/strata/integration/docs/example/ScrollPlayersExample.kt#L95-L114",
       },
       {
         kind: "image",
         src: "/images/strata-screen.webp",
-        alt: "Player rows with a head, name, role, and Invite button.",
+        alt: "Alex’s player head beside the name Alex, the role Builder, and an Invite button.",
       },
     ],
   },
@@ -130,20 +124,13 @@ export const libraries: Library[] = [
     name: "minecraft-skills",
     github: "https://github.com/sya-ri/minecraft-skills",
     description:
-      "Versioned AI skills, canonical data, CLI, and MCP tooling for Minecraft authors and their AI agents.",
+      "Look up the pack format for a specific Minecraft release from your terminal. AI assistants can query the same versioned data over MCP.",
     examples: [
       {
         kind: "code",
         label: "Terminal",
-        language: "bash",
+        language: "shellsession",
         code: minecraftSkillsExample,
-        source: "https://github.com/sya-ri/minecraft-skills/blob/main/packages/cli/README.md",
-      },
-      {
-        kind: "code",
-        label: "Output",
-        language: "json",
-        code: minecraftSkillsOutput,
       },
     ],
   },
@@ -151,15 +138,14 @@ export const libraries: Library[] = [
     slug: "ktconfig",
     name: "ktConfig",
     github: "https://github.com/sya-ri/ktConfig",
-    description: "Bukkit and Fabric YAML configuration library for Kotlin using class annotations.",
+    description:
+      "Define your settings once in a Kotlin data class. ktConfig reads and writes the matching YAML for Bukkit plugins and Fabric mods.",
     examples: [
       {
         kind: "code",
         label: "ServerConfig.kt",
         language: "kotlin",
         code: ktconfigExample,
-        source:
-          "https://github.com/sya-ri/ktConfig/blob/c5aa8661a20da4751463ee29033d6e34660b3664/docs/usage.md#default-values",
       },
       {
         kind: "code",
@@ -174,21 +160,20 @@ export const libraries: Library[] = [
     name: "ktInventory",
     website: "https://gh.s7a.dev/ktInventory",
     github: "https://github.com/sya-ri/ktInventory",
-    description: "Spigot library with Kotlin for easy inventory creation and event handling",
+    description:
+      "Turn a Minecraft inventory into a menu for your Spigot plugin. Each button pairs an item with the Kotlin code that runs when a player clicks it.",
     examples: [
       {
         kind: "code",
         label: "SimpleMenu.kt",
         language: "kotlin",
         code: ktinventoryExample,
-        source:
-          "https://github.com/sya-ri/ktInventory/blob/9aef084fe2cb1af00123cdee690a3945d143631e/example/src/main/kotlin/dev/s7a/ktinventory/example/menu/SimpleMenu.kt#L10-L34",
         scroll: true,
       },
       {
         kind: "image",
         src: "/images/ktinventory-screen.webp",
-        alt: "The teleport menu with a red bed in slot four and a compass in slot six.",
+        alt: "A nine-slot menu with a red bed in the fourth slot and a compass in the sixth.",
       },
     ],
   },
@@ -197,21 +182,19 @@ export const libraries: Library[] = [
     name: "ktAdvancements",
     github: "https://github.com/sya-ri/ktAdvancements",
     description:
-      "A lightweight, packet-based Minecraft advancements library for Spigot/Paper plugins with customizable runtime and data storage.",
+      "Give players custom advancements on Spigot or Paper. Define each goal in Kotlin and choose where to save players’ progress.",
     examples: [
       {
         kind: "code",
         label: "TestAdvancement.kt",
         language: "kotlin",
         code: ktadvancementsExample,
-        source:
-          "https://github.com/sya-ri/ktAdvancements/blob/master/game-test/src/main/kotlin/dev/s7a/ktAdvancements/gametest/TestAdvancement.kt",
         scroll: true,
       },
       {
         kind: "image",
-        src: "/images/ktadvancements-screen.webp",
-        alt: "In-game advancement screen showing Progress at 3/10, linked to the root grass block.",
+        src: "/images/ktadvancements-screen.png",
+        alt: "A grass block leads to a stone advancement. Its tooltip shows three of ten steps complete.",
       },
     ],
   },
@@ -219,15 +202,14 @@ export const libraries: Library[] = [
     slug: "minecraft-server-gradle-plugin",
     name: "minecraft-server-gradle-plugin",
     github: "https://github.com/sya-ri/minecraft-server-gradle-plugin",
-    description: "Launch Minecraft servers using Gradle task. For Bukkit, Spigot, Paper, etc..",
+    description:
+      "Test your plugin on a local Minecraft server with one Gradle task. This example copies the plugin JAR into place and starts Paper.",
     examples: [
       {
         kind: "code",
         label: "build.gradle.kts",
         language: "kotlin",
         code: minecraftServerGradlePluginExample,
-        source:
-          "https://github.com/sya-ri/minecraft-server-gradle-plugin/blob/daee0cc2b88f1570fc2dae6a864548e0ef129332/README.md#for-testing-a-plugin",
       },
     ],
   },
@@ -235,20 +217,13 @@ export const libraries: Library[] = [
     slug: "kgit",
     name: "KGit",
     github: "https://github.com/sya-ri/KGit",
-    description: "Kotlin Wrapper Library of JGit",
+    description: "Use Git from Kotlin through JGit. Here’s how to clone KGit’s own repository.",
     examples: [
       {
         kind: "code",
         label: "Kotlin",
         language: "kotlin",
         code: kgitExample,
-        source: "https://github.com/sya-ri/KGit/blob/master/README.md#clone-repository",
-      },
-      {
-        kind: "code",
-        label: "Terminal",
-        language: "bash",
-        code: kgitOutput,
       },
     ],
   },
@@ -256,15 +231,14 @@ export const libraries: Library[] = [
     slug: "hal-extension",
     name: "HAL_Extension",
     github: "https://github.com/sya-ri/HAL_Extension",
-    description: "STM32Cube HAL C++ Library",
+    description:
+      "Control STM32 hardware from C++ using STM32Cube HAL. Here, two timer channels set the direction and speed of each motor.",
     examples: [
       {
         kind: "code",
         label: "C++",
         language: "cpp",
         code: halExtensionExample,
-        source:
-          "https://github.com/sya-ri/HAL_Extension/blob/c6603bd52dd668674f6551aedefa238909b6258c/tim/class/Motor.md",
       },
     ],
   },

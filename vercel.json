@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "astro",
-  "buildCommand": "npm run build",
+  "buildCommand": "corepack pnpm run build",
   "outputDirectory": "dist",
   "redirects": [
     {
@@ -19,5 +19,6 @@
       "destination": "https://spigot-event-list.s7a.dev",
       "permanent": true
     }
-  ]
+  ],
+  "installCommand": "corepack pnpm install --frozen-lockfile"
 }

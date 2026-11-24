@@ -3,7 +3,7 @@ class SimpleMenu(
 ) : KtInventory(context, 1) {
     constructor(plugin: Plugin) : this(KtInventoryPluginContext(plugin))
 
-    override fun title() = "&0&lSelect where to teleport"
+    override fun title() = "&0&lChoose a destination"
 
     init {
         button(3, itemStack(Material.RED_BED, "&cRespawn")) { event ->
@@ -12,11 +12,11 @@ class SimpleMenu(
             if (respawnLocation != null) {
                 player.teleport(respawnLocation)
             } else {
-                player.sendMessage("Not found bedSpawnLocation")
+                player.sendMessage("You haven’t set a respawn point.")
             }
             player.closeInventory()
         }
-        button(5, itemStack(Material.COMPASS, "&bWorldSpawn")) { event ->
+        button(5, itemStack(Material.COMPASS, "&bWorld spawn")) { event ->
             val player = event.player as? Player ?: return@button
             player.teleport(player.world.spawnLocation)
             player.closeInventory()

@@ -97,7 +97,6 @@ const leftLeg = part(8, 20, 4, 12, 4, [16, 48], [0, 48], 0.26);
 const wingLeft = make(player, "elytra wing-left"),
   wingRight = make(player, "elytra wing-right");
 for (const wing of [wingLeft, wingRight]) make(wing, "wing-core");
-const trail = root.querySelector(".trail");
 const profileAngle = 48;
 const headTurn = -25;
 let ground = reader.scrollLeft,
@@ -208,7 +207,6 @@ function pose() {
     limb.style.setProperty("--limb-light", 0.95 - 0.05 * facing);
   if (!idle)
     head.style.transform = "rotateX(" + 84 * glide + "deg) rotateY(" + headTurn * facing + "deg)";
-  trail.style.backgroundPositionX = (preference.matches ? 0 : -reader.scrollLeft * 0.32) + "px";
 }
 function tick(now) {
   frame = 0;
@@ -466,9 +464,11 @@ function syncPage() {
   const page = cards[activePage],
     section = page.dataset.section;
   for (const link of links) {
-    if (link.hash === "#" + section) link.setAttribute("aria-current", "location");
+    if (link.dataset.section === section) link.setAttribute("aria-current", "location");
     else link.removeAttribute("aria-current");
   }
+  const hash = "#" + page.id;
+  if (!trip && location.hash !== hash) history.replaceState(null, "", hash);
   // Keep the travel lane in view on short pages, including the introduction.
   if (!trip?.flying) track.style.setProperty("--active-height", page.offsetHeight + 8 + "px");
 }
@@ -481,8 +481,11 @@ new ResizeObserver(syncPage).observe(reader);
 const sizeObserver = new ResizeObserver(syncPage);
 cards.forEach((card) => sizeObserver.observe(card));
 function restoreLocation() {
-  const index = location.hash ? cards.indexOf(document.getElementById(location.hash.slice(1))) : 0;
-  if (index < 0) return;
+  const slug = location.hash.slice(1);
+  const index = Math.max(
+    0,
+    cards.findIndex((card) => card.id === slug || card.dataset.section === slug),
+  );
   cancelAlignment();
   endTrip();
   wheelTarget = null;
@@ -490,9 +493,10 @@ function restoreLocation() {
   reader.scrollTo({ left: offsetOf(index), behavior: "instant" });
   syncPage();
 }
+history.scrollRestoration = "manual";
 window.addEventListener("hashchange", restoreLocation);
-if (location.hash) restoreLocation();
-syncPage();
+window.addEventListener("popstate", restoreLocation);
+restoreLocation();
 
 // A new project passing into view briefly catches Shari's eye.
 let glance = null;

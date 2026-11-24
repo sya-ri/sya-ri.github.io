@@ -81,13 +81,6 @@
 #portfolio[data-coat="purple"] {
   --coat: light-dark(#81629b, #cab0ea);
 }
-#portfolio .trail {
-  position: absolute;
-  inset: auto 0 var(--floor);
-  height: 6px;
-  border-top: 2px solid var(--line);
-  background: repeating-linear-gradient(90deg, transparent 0 16px, var(--line) 16px 17px);
-}
 #portfolio .traveler {
   position: absolute;
   left: clamp(42px, 8%, 62px);

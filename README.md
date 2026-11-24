@@ -1,26 +1,26 @@
 # sya_ri's portfolio
 
-An interactive portfolio for sya_ri's projects and open-source libraries at [s7a.dev](https://s7a.dev). The Astro site builds to static HTML. A small browser script handles horizontal navigation and animates Shari as you scroll.
+[s7a.dev](https://s7a.dev) is a gallery of my projects and open-source libraries. Scroll through the gallery to walk alongside Shari, or use the section links to jump ahead. Each entry has its own URL.
 
 ## Development
 
-Use Node.js 24 and install the pinned dependencies with `npm ci`. The project includes the Vite+ CLI.
+Use Node.js 24 and the pnpm version pinned in `package.json`. Install dependencies with `pnpm install --frozen-lockfile`.
 
 ```sh
-npx vp run dev
-npx vp fmt --check
-npx vp lint
-npx vp run check
-npx vp run build
-npx vp run preview
+pnpm exec vp run dev
+pnpm exec vp fmt --check
+pnpm exec vp lint
+pnpm exec vp run check
+pnpm exec vp run build
+pnpm exec vp run preview
 ```
 
-Vite+ runs Oxfmt and Oxlint. The check task runs Astro diagnostics. To apply formatting, run `npx vp fmt`. The production build writes to `dist/`.
+Vite+ runs Oxfmt and Oxlint. The check task runs Astro diagnostics. Run `pnpm exec vp fmt` to apply formatting. Astro writes the static site to `dist/`.
 
-## Editing the portfolio
+## Editing the gallery
 
-Edit the ordered project and library entries in `src/data/portfolio.ts`. Library code samples live in `src/examples/`, and artwork lives in `public/images/`. The About section and traveler use the same color palette.
+The order of the entries in `src/data/portfolio.ts` sets their order on the site. Each slug doubles as a shareable URL fragment. Code samples live in `src/examples/`. Shiki highlights them at build time. Screenshots and other artwork live in `public/images/`.
 
 ## Hosting
 
-Vercel serves the Astro build at `s7a.dev`. The `docs/` directory serves the existing GitHub Pages redirects for `gh.s7a.dev`. The publisher record is served from `public/ads.txt`.
+Vercel serves the portfolio at [s7a.dev](https://s7a.dev). The `docs/` directory contains the GitHub Pages redirects for `gh.s7a.dev`. The AdSense publisher record lives in `public/ads.txt`.

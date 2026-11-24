@@ -21,17 +21,17 @@
   --muted: color-mix(in srgb, var(--ink) 76%, var(--paper));
   --line: color-mix(in srgb, var(--ink) 24%, var(--paper));
   --keyline: color-mix(in srgb, var(--ink) 56%, var(--paper));
-  --astro-code-foreground: var(--ink);
-  --astro-code-background: transparent;
-  --astro-code-token-constant: var(--literal);
-  --astro-code-token-string: var(--literal);
-  --astro-code-token-string-expression: var(--literal);
-  --astro-code-token-comment: var(--muted);
-  --astro-code-token-keyword: var(--ink);
-  --astro-code-token-function: var(--accent);
-  --astro-code-token-parameter: var(--ink);
-  --astro-code-token-punctuation: var(--muted);
-  --astro-code-token-link: var(--accent);
+  --code-foreground: var(--ink);
+  --code-background: transparent;
+  --code-token-constant: var(--literal);
+  --code-token-string: var(--literal);
+  --code-token-string-expression: var(--literal);
+  --code-token-comment: var(--muted);
+  --code-token-keyword: var(--ink);
+  --code-token-function: var(--accent);
+  --code-token-parameter: var(--ink);
+  --code-token-punctuation: var(--muted);
+  --code-token-link: var(--accent);
   font-family: "DM Sans", system-ui, sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -332,14 +332,8 @@ button:focus-visible,
   font-size: 0.875rem;
   font-weight: 550;
 }
-.code-pane figcaption a {
-  align-content: center;
-  min-height: 42px;
-  color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
 .code-pane pre {
+  white-space: pre-wrap;
   padding: clamp(12px, 1.8vw, 24px) 0;
   overflow-wrap: anywhere;
   font:
@@ -351,7 +345,7 @@ button:focus-visible,
 .code-pane code {
   font: inherit;
 }
-.code-pane pre.long-code {
+.code-pane .long-code {
   max-height: clamp(245px, 46svh, 440px);
   overflow-y: auto;
   padding-right: 6px;

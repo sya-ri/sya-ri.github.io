@@ -10,12 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-          cache: npm
-      - run: npm ci
-      - run: npx --no-install vp fmt --check
-      - run: npx --no-install vp lint
-      - run: npx --no-install vp run check
-      - run: npx --no-install vp run build
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec vp fmt --check
+      - run: pnpm exec vp lint
+      - run: pnpm exec vp run check
+      - run: pnpm exec vp run build

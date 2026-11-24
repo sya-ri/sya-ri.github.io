@@ -1,12 +1,10 @@
-val pluginJar = tasks.named<Jar>("jar")
-task<LaunchMinecraftServerTask>("testPlugin") {
-    dependsOn("build")
-    doFirst {
-        copy {
-            from(pluginJar.get().archiveFile)
-            into(layout.buildDirectory.dir("MinecraftServer/plugins"))
-        }
-    }
-    jarUrl.set(JarUrl.Paper("1.19.2"))
+val installPlugin = tasks.register<Copy>("installPlugin") {
+    from(tasks.named<Jar>("jar").flatMap { it.archiveFile })
+    into(layout.buildDirectory.dir("MinecraftServer/plugins"))
+}
+
+tasks.register<LaunchMinecraftServerTask>("testPlugin") {
+    dependsOn(installPlugin)
+    jarUrl.set(JarUrl.Paper("1.21.11"))
     agreeEula.set(true)
 }

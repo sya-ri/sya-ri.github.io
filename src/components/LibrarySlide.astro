@@ -1,41 +1,36 @@
 ---
-import { Code } from "astro:components";
 import WorkHeading from "./WorkHeading.astro";
+import { highlight } from "../lib/highlight";
 import type { Library } from "../data/portfolio";
 interface Props {
   library: Library;
-  first: boolean;
 }
-const { library, first } = Astro.props;
+const { library } = Astro.props;
 ---
 
 <article
   class="work library"
-  id={first ? "libraries" : library.slug}
+  id={library.slug}
   data-section="libraries"
   aria-labelledby={`heading-${library.slug}`}
 >
   <WorkHeading work={library} />
   <p class="library-description">{library.description}</p>
   <div class:list={["examples", { paired: library.examples.length > 1 }]}>
-    {library.examples.map((example) =>
+    {library.examples.map(async (example) =>
       example.kind === "image" ? (
         <figure class="example-image">
           <img src={example.src} alt={example.alt} />
         </figure>
       ) : (
         <figure class="code-pane">
-          <figcaption>
-            {example.source ? <a href={example.source}>{example.label}</a> : example.label}
-          </figcaption>
-          <Code
-            code={example.code.trimEnd()}
-            lang={example.language}
-            theme="css-variables"
-            wrap={true}
-            class={example.scroll ? "long-code" : undefined}
+          <figcaption>{example.label}</figcaption>
+          <div
+            class:list={[{ "long-code": example.scroll }]}
             tabindex={example.scroll ? 0 : undefined}
-            aria-label={example.scroll ? `${example.label} source code` : undefined}
+            role={example.scroll ? "region" : undefined}
+            aria-label={example.scroll ? example.label : undefined}
+            set:html={await highlight(example)}
           />
         </figure>
       ),

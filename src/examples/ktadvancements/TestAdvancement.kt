@@ -1,71 +1,16 @@
-internal enum class TestAdvancement(
+enum class TestAdvancement(
     override val parent: TestAdvancement?,
-    override val requirement: Int,
-    override val defaultGranted: Boolean,
-    override val visibility: KtAdvancement.Visibility,
-    private val xOffset: Float,
-    private val yOffset: Float,
-    icon: Material,
-    title: String,
-    description: String,
+    override val display: Display,
+    override val requirement: Int = 1,
 ) : KtAdvancement<TestAdvancement> {
-    Root(
-        parent = null,
-        requirement = 1,
-        defaultGranted = true,
-        visibility = KtAdvancement.Visibility.Always,
-        xOffset = 0F,
-        yOffset = 0F,
-        icon = Material.GRASS_BLOCK,
-        title = "Game test",
-        description = "Game-test root",
-    ),
-    Progress(
-        parent = Root,
-        requirement = 10,
-        defaultGranted = false,
-        visibility = KtAdvancement.Visibility.Always,
-        xOffset = 1.5F,
-        yOffset = 0F,
-        icon = Material.STONE,
-        title = "Progress",
-        description = "Complete ten steps",
-    ),
-    Hidden(
-        parent = Progress,
-        requirement = 2,
-        defaultGranted = false,
-        visibility = KtAdvancement.Visibility.HaveProgress,
-        xOffset = 1.5F,
-        yOffset = 0F,
-        icon = Material.DIAMOND,
-        title = "Hidden progress",
-        description = "Visible after the first step",
-    ),
-    ;
+    Root(null, Display(0f, 0f, ItemStack(Material.GRASS_BLOCK),
+        "Game test", "Game-test root", background = NamespacedKey.minecraft(
+            "textures/gui/advancements/backgrounds/adventure.png"
+        ), showToast = false)),
+    Progress(Root, Display(1.5f, 0f, ItemStack(Material.STONE),
+        "Progress", "Complete ten steps"), requirement = 10);
 
-    @Suppress("DEPRECATION")
-    override val id: NamespacedKey
-        get() = NamespacedKey("ktadvancements_test", name.lowercase())
-
-    override val display: KtAdvancement.Display =
-        if (parent == null) {
-            KtAdvancement.Display(
-                x = xOffset,
-                y = yOffset,
-                icon = ItemStack(icon),
-                title = title,
-                description = description,
-                background = NamespacedKey.minecraft("textures/gui/advancements/backgrounds/adventure.png"),
-                showToast = false,
-            )
-        } else {
-            KtAdvancement.Display(
-                x = parent.display.x + xOffset,
-                y = parent.display.y + yOffset,
-                icon = ItemStack(icon),
-                title = title,
-                description = description,
-            )
-        }
+    override val id get() = NamespacedKey("ktadvancements_test", name.lowercase())
+    override val visibility = KtAdvancement.Visibility.Always
+    override val defaultGranted get() = parent == null
 }

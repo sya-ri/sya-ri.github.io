@@ -348,7 +348,7 @@ preference.addEventListener("change", () => {
 });
 const cards = [...reader.querySelectorAll(".work-grid > .work")];
 const track = root.querySelector(".work-grid");
-const links = [...root.querySelectorAll(".section-nav a")];
+const links = [...root.querySelectorAll('.signature a[href^="#"]')];
 root.dataset.enhanced = "";
 const offsetOf = (index) => cards[index].offsetLeft - cards[0].offsetLeft;
 const clampPage = (index) => Math.max(0, Math.min(cards.length - 1, index));

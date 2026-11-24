@@ -76,26 +76,27 @@ function part(x, y, w, h, d, u, v) {
   face(w, d, u + d + w, v, "rotateX(-90deg)", h, 0.76);
   return joint;
 }
-const head = part(4, 0, 8, 8, 8, 0, 0);
-head.style.transformOrigin = "50% 100%";
-part(4, 8, 8, 12, 4, 16, 16);
-const rightArm = part(0, 8, 4, 12, 4, 40, 16);
-const leftArm = part(12, 8, 4, 12, 4, 32, 48);
-const rightLeg = part(4, 20, 4, 12, 4, 0, 16);
-const leftLeg = part(8, 20, 4, 12, 4, 16, 48);
-const wingLeft = make(player, "elytra wing-left"),
-  wingRight = make(player, "elytra wing-right");
-for (const wing of [wingLeft, wingRight]) make(wing, "wing-core");
+function buildPlayer() {
+  const head = part(4, 0, 8, 8, 8, 0, 0);
+  head.style.transformOrigin = "50% 100%";
+  part(4, 8, 8, 12, 4, 16, 16);
+  const rightArm = part(0, 8, 4, 12, 4, 40, 16);
+  const leftArm = part(12, 8, 4, 12, 4, 32, 48);
+  const rightLeg = part(4, 20, 4, 12, 4, 0, 16);
+  const leftLeg = part(8, 20, 4, 12, 4, 16, 48);
+  const wingLeft = make(player, "elytra wing-left"),
+    wingRight = make(player, "elytra wing-right");
+  for (const wing of [wingLeft, wingRight]) make(wing, "wing-core");
+  return { head, rightArm, leftArm, rightLeg, leftLeg, wingLeft, wingRight };
+}
+let model;
 const profileAngle = 48;
 const headTurn = -25;
-function scrollPosition() {
-  return vertical.matches ? window.scrollY : reader.scrollLeft;
-}
 function scrollToPosition(value) {
   if (vertical.matches) window.scrollTo({ top: value, behavior: "instant" });
   else reader.scrollLeft = value;
 }
-let ground = scrollPosition(),
+let ground = reader.scrollLeft,
   power = 0,
   step = 0,
   yaw = profileAngle,
@@ -124,6 +125,8 @@ function cancelGaze() {
 function standStill() {
   cancelGaze();
   idle = true;
+  if (vertical.matches) return;
+  const { head } = model;
   head.style.transform = look(headTurn);
   if (preference.matches) return;
   // Holds between head movements leave plenty of quiet time for reading.
@@ -152,12 +155,15 @@ function standStill() {
 }
 function beginWalk() {
   if (!idle) return;
+  const { head } = model;
   const from = getComputedStyle(head).transform;
   cancelGaze();
   idle = false;
   gaze = head.animate([{ transform: from }, {}], { duration: 180, easing: "ease-out" });
 }
 function pose() {
+  if (vertical.matches) return;
+  const { head, rightArm, leftArm, rightLeg, leftLeg, wingLeft, wingRight } = model;
   const unfold = trip?.flying
     ? Math.max(0, Math.min(1, trip.progress / 0.22, (1 - trip.progress) / 0.24))
     : 0;
@@ -208,7 +214,7 @@ function tick(now) {
     const t = Math.min(1, (now - trip.start) / trip.duration);
     trip.progress = Math.max(0, t);
     const eased = trip.progress * trip.progress * (3 - 2 * trip.progress);
-    scrollToPosition(trip.from + (trip.to - trip.from) * eased);
+    reader.scrollLeft = trip.from + (trip.to - trip.from) * eased;
     if (t === 1) endTrip();
   }
   if (wheelTarget !== null) {
@@ -225,7 +231,7 @@ function tick(now) {
       reader.scrollLeft += Math.sign(gap) * advance;
     }
   }
-  const gap = scrollPosition() - ground;
+  const gap = reader.scrollLeft - ground;
   const distance = gap * (1 - Math.exp(-dt / 68));
   ground += distance;
   const speed = Math.abs(distance) / dt;
@@ -248,7 +254,7 @@ function tick(now) {
     power < 0.008 &&
     Math.abs(yaw - turning) < 0.4
   ) {
-    ground = scrollPosition();
+    ground = reader.scrollLeft;
     power = 0;
     yaw = turning;
     step = Math.round(step / Math.PI) * Math.PI;
@@ -261,7 +267,7 @@ function tick(now) {
   frame = requestAnimationFrame(tick);
 }
 function startMotion() {
-  if (preference.matches || frame) return;
+  if (vertical.matches || preference.matches || frame) return;
   beginWalk();
   frame = requestAnimationFrame(tick);
 }
@@ -273,14 +279,12 @@ reader.addEventListener(
   },
   { passive: true },
 );
-window.addEventListener(
+reader.addEventListener(
   "pointerdown",
   () => {
-    const interrupted = trip !== null;
     endTrip();
     cancelAlignment();
     wheelTarget = null;
-    if (interrupted && vertical.matches) syncPage();
   },
   { passive: true },
 );
@@ -337,7 +341,7 @@ new ResizeObserver(() => {
 }).observe(reader);
 preference.addEventListener("change", () => {
   if (trip) {
-    scrollToPosition(trip.to);
+    reader.scrollLeft = trip.to;
     endTrip();
   }
   cancelAnimationFrame(frame);
@@ -346,7 +350,7 @@ preference.addEventListener("change", () => {
   if (wheelTarget !== null) reader.scrollLeft = wheelTarget;
   cancelAlignment();
   wheelTarget = null;
-  ground = scrollPosition();
+  ground = reader.scrollLeft;
   power = 0;
   step = 0;
   direction = 1;
@@ -360,7 +364,10 @@ const links = [...root.querySelectorAll('.signature a[href^="#"]')];
 function applyLayout() {
   root.dataset.layout = vertical.matches ? "vertical" : "horizontal";
   reader.removeEventListener("wheel", galleryWheel);
-  if (!vertical.matches) reader.addEventListener("wheel", galleryWheel, { passive: false });
+  if (!vertical.matches) {
+    model ??= buildPlayer();
+    reader.addEventListener("wheel", galleryWheel, { passive: false });
+  }
 }
 applyLayout();
 const offsetOf = (index) => cards[index].offsetLeft - cards[0].offsetLeft;
@@ -401,19 +408,22 @@ function travelTo(index) {
   cancelAlignment();
   endTrip();
   wheelTarget = null;
-  const from = scrollPosition();
-  const to = vertical.matches
-    ? verticalOffset(index)
-    : Math.min(offsetOf(index), reader.scrollWidth - reader.clientWidth);
+  if (vertical.matches) {
+    window.scrollTo({ top: verticalOffset(index), behavior: "instant" });
+    syncPage();
+    return;
+  }
+  const from = reader.scrollLeft;
+  const to = Math.min(offsetOf(index), reader.scrollWidth - reader.clientWidth);
   const distance = Math.abs(to - from);
   if (distance < 1 || preference.matches) {
     settledPage = index;
-    scrollToPosition(to);
+    reader.scrollLeft = to;
     syncPage();
     return;
   }
   // Adjacent pages are within running distance, even across a section boundary.
-  const flying = vertical.matches ? Math.abs(index - activePage) > 1 : distance > 1.5 * pageStep;
+  const flying = distance > 1.5 * pageStep;
   trip = { from, to, flying, progress: 0, start: performance.now(), duration: flying ? 1050 : 360 };
   root.dataset.trip = flying ? "fly" : "run";
   startMotion();
@@ -464,7 +474,7 @@ reader.addEventListener("onscrollend" in reader ? "scrollend" : "scroll", schedu
 function syncPage() {
   if (vertical.matches) {
     const index = visibleVerticalPage();
-    if (index !== activePage || (!trip && location.hash !== "#" + cards[index].id)) {
+    if (index !== activePage || location.hash !== "#" + cards[index].id) {
       activePage = index;
       markCurrent();
     }
@@ -519,37 +529,25 @@ function restoreLocation() {
   scrollToPosition(vertical.matches ? verticalOffset(index) + offset : offsetOf(index));
   syncPage();
 }
-// Ordinary swipes and wheel gestures on a phone belong to the document.
 window.addEventListener(
   "scroll",
   () => {
-    if (!vertical.matches) return;
-    syncPage();
-    startMotion();
+    if (vertical.matches) syncPage();
   },
   { passive: true },
 );
-function interruptVerticalTrip() {
-  if (vertical.matches && trip) {
-    endTrip();
-    syncPage();
-  }
-}
-window.addEventListener("wheel", interruptVerticalTrip, { passive: true });
-window.addEventListener("keydown", (event) => {
-  if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key))
-    interruptVerticalTrip();
-});
 history.scrollRestoration = "manual";
 window.addEventListener("hashchange", restoreLocation);
 window.addEventListener("popstate", restoreLocation);
 restoreLocation();
-ground = scrollPosition();
+ground = reader.scrollLeft;
 
 // A new project passing into view briefly catches sya-ri's eye.
 let glance = null;
 const tracked = new Set();
 function glanceAtEntry(changes) {
+  if (vertical.matches) return;
+  const { head } = model;
   for (const entry of changes) {
     const returning = tracked.has(entry.target);
     tracked.add(entry.target);
@@ -569,8 +567,9 @@ function glanceAtEntry(changes) {
   }
 }
 function watchEntries() {
+  if (vertical.matches) return null;
   const observer = new IntersectionObserver(glanceAtEntry, {
-    root: vertical.matches ? null : reader,
+    root: reader,
     threshold: 0.36,
   });
   cards.forEach((card) => observer.observe(card));
@@ -591,13 +590,14 @@ vertical.addEventListener("change", () => {
   direction = 1;
   yaw = profileAngle;
   applyLayout();
-  observer.disconnect();
+  glance?.cancel();
+  observer?.disconnect();
   observer = watchEntries();
   pageStep = offsetOf(1);
   settledPage = index;
   if (!vertical.matches) window.scrollTo({ top: 0, behavior: "instant" });
   scrollToPosition(vertical.matches ? verticalOffset(index) : offsetOf(index));
-  ground = scrollPosition();
+  ground = reader.scrollLeft;
   pose();
   standStill();
   syncPage();

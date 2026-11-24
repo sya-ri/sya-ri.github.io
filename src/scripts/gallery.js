@@ -345,6 +345,8 @@ reader.addEventListener("keydown", (event) => {
     !["ArrowLeft", "ArrowRight"].includes(event.key)
   )
     return;
+  const code = event.target.closest(".code-scroll");
+  if (code && code.scrollWidth > code.clientWidth) return;
   event.preventDefault();
   moveCard(event.key === "ArrowRight" ? 1 : -1);
 });

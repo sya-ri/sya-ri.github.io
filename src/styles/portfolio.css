@@ -310,6 +310,17 @@ button:focus-visible,
 .examples.paired {
   grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
 }
+.examples.stacked {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+}
+.stacked .example-image {
+  padding-top: 0;
+}
+.stacked .example-image img {
+  width: auto;
+  max-width: 100%;
+}
 .example-image {
   min-width: 0;
   padding-top: 12px;
@@ -344,6 +355,13 @@ button:focus-visible,
 }
 .code-pane code {
   font: inherit;
+}
+.code-scroll {
+  overflow-x: auto;
+}
+.code-scroll pre {
+  white-space: pre;
+  overflow-wrap: normal;
 }
 .code-pane .long-code {
   max-height: clamp(245px, 46svh, 440px);

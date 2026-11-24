@@ -31,6 +31,7 @@ export type Example =
     };
 export interface Library extends Work {
   description: string;
+  layout?: "paired" | "stacked";
   examples: Example[];
 }
 
@@ -100,6 +101,7 @@ export const libraries: Library[] = [
   {
     slug: "strata",
     name: "Strata",
+    layout: "paired",
     website: "https://gh.s7a.dev/strata/demos/",
     github: "https://github.com/sya-ri/strata",
     description:
@@ -137,6 +139,7 @@ export const libraries: Library[] = [
   {
     slug: "ktconfig",
     name: "ktConfig",
+    layout: "paired",
     github: "https://github.com/sya-ri/ktConfig",
     description:
       "Define your settings once in a Kotlin data class. ktConfig reads and writes the matching YAML for Bukkit plugins and Fabric mods.",
@@ -158,6 +161,7 @@ export const libraries: Library[] = [
   {
     slug: "ktinventory",
     name: "ktInventory",
+    layout: "stacked",
     website: "https://gh.s7a.dev/ktInventory",
     github: "https://github.com/sya-ri/ktInventory",
     description:
@@ -179,6 +183,7 @@ export const libraries: Library[] = [
   {
     slug: "ktadvancements",
     name: "ktAdvancements",
+    layout: "stacked",
     github: "https://github.com/sya-ri/ktAdvancements",
     description:
       "Give players custom advancements on Spigot or Paper. Define each goal in Kotlin and choose where to save players’ progress.",

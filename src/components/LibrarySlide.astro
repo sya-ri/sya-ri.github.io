@@ -6,6 +6,7 @@ interface Props {
   library: Library;
 }
 const { library } = Astro.props;
+const stacked = library.layout === "stacked";
 ---
 
 <article
@@ -16,7 +17,7 @@ const { library } = Astro.props;
 >
   <WorkHeading work={library} />
   <p class="library-description">{library.description}</p>
-  <div class:list={["examples", { paired: library.examples.length > 1 }]}>
+  <div class:list={["examples", library.layout]}>
     {library.examples.map(async (example) =>
       example.kind === "image" ? (
         <figure class="example-image">
@@ -26,10 +27,10 @@ const { library } = Astro.props;
         <figure class="code-pane">
           <figcaption>{example.label}</figcaption>
           <div
-            class:list={[{ "long-code": example.scroll }]}
-            tabindex={example.scroll ? 0 : undefined}
-            role={example.scroll ? "region" : undefined}
-            aria-label={example.scroll ? example.label : undefined}
+            class:list={[{ "code-scroll": stacked, "long-code": example.scroll }]}
+            tabindex={stacked || example.scroll ? 0 : undefined}
+            role={stacked || example.scroll ? "region" : undefined}
+            aria-label={stacked || example.scroll ? example.label : undefined}
             set:html={await highlight(example)}
           />
         </figure>

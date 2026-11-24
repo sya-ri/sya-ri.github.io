@@ -1,15 +1,14 @@
 enum class TestAdvancement(
     override val parent: TestAdvancement?,
-    override val display: Display,
-    override val requirement: Int = 1,
+    override val requirement: Int,
+    icon: Material,
+    description: String,
 ) : KtAdvancement<TestAdvancement> {
-    Root(null, Display(0f, 0f, ItemStack(Material.GRASS_BLOCK),
-        "Game test", "Game-test root", background = NamespacedKey.minecraft(
-            "textures/gui/advancements/backgrounds/adventure.png"
-        ), showToast = false)),
-    Progress(Root, Display(1.5f, 0f, ItemStack(Material.STONE),
-        "Progress", "Complete ten steps"), requirement = 10);
+    Root(null, 1, Material.GRASS_BLOCK, "Game-test root"),
+    Progress(Root, 10, Material.STONE, "Complete ten steps"),
+    ;
 
+    override val display = Display(ordinal * 1.5f, 0f, ItemStack(icon), name, description)
     override val id get() = NamespacedKey("ktadvancements_test", name.lowercase())
     override val visibility = KtAdvancement.Visibility.Always
     override val defaultGranted get() = parent == null

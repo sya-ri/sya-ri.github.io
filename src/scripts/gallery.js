@@ -16,7 +16,7 @@ function selectCoat(key) {
   const color = colors.find((pair) => pair[0] === key) ?? colors[0];
   root.dataset.coat = color[0];
   colorButtons.forEach((button) =>
-    button.setAttribute("aria-label", "Change Shari’s color. Current color: " + color[1]),
+    button.setAttribute("aria-label", "Change sya-ri’s color. Current color: " + color[1]),
   );
 }
 selectCoat();
@@ -29,7 +29,7 @@ function cycleCoat() {
   const index = colors.findIndex((pair) => pair[0] === root.dataset.coat);
   const [key, name] = colors[(index + 1) % colors.length];
   selectCoat(key);
-  announcement.textContent = "Shari is " + name;
+  announcement.textContent = "sya-ri is " + name;
   try {
     localStorage.setItem("shari-color", key);
   } catch {
@@ -307,16 +307,6 @@ reader.addEventListener("touchcancel", releaseTouch, { passive: true });
 reader.addEventListener(
   "wheel",
   (event) => {
-    const code = event.target.closest?.(".long-code");
-    if (
-      code &&
-      !event.shiftKey &&
-      Math.abs(event.deltaY) > Math.abs(event.deltaX) &&
-      (event.deltaY < 0
-        ? code.scrollTop > 0
-        : code.scrollTop + code.clientHeight < code.scrollHeight - 1)
-    )
-      return;
     endTrip();
     cancelAlignment();
     if (event.ctrlKey || event.shiftKey || Math.abs(event.deltaX) >= Math.abs(event.deltaY)) {
@@ -500,7 +490,7 @@ window.addEventListener("hashchange", restoreLocation);
 window.addEventListener("popstate", restoreLocation);
 restoreLocation();
 
-// A new project passing into view briefly catches Shari's eye.
+// A new project passing into view briefly catches sya-ri's eye.
 let glance = null;
 const tracked = new Set();
 const observer = new IntersectionObserver(

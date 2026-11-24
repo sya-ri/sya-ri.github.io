@@ -1,7 +1,8 @@
-val installPlugin = tasks.register<Copy>("installPlugin") {
-    from(tasks.named<Jar>("jar").flatMap { it.archiveFile })
-    into(layout.buildDirectory.dir("MinecraftServer/plugins"))
-}
+val installPlugin =
+    tasks.register<Copy>("installPlugin") {
+        from(tasks.named<Jar>("jar").flatMap { it.archiveFile })
+        into(layout.buildDirectory.dir("MinecraftServer/plugins"))
+    }
 
 tasks.register<LaunchMinecraftServerTask>("testPlugin") {
     dependsOn(installPlugin)

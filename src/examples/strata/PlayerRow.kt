@@ -1,8 +1,7 @@
 private fun UiScope.playerRow(player: ReadmePlayer) {
+    val gray = ArgbColor(0xFF4A4A4A.toInt())
     Row(
-        modifier = Modifier.background(ArgbColor(0xFF4A4A4A.toInt()))
-            .padding(6)
-            .fillMaxWidth(),
+        modifier = Modifier.background(gray).padding(6).fillMaxWidth(),
         spacing = 8,
         verticalAlignment = VerticalAlignment.Center,
     ) {

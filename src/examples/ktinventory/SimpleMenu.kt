@@ -1,4 +1,6 @@
-class SimpleMenu(context: KtInventoryPluginContext) : KtInventory(context, 1) {
+class SimpleMenu(
+    context: KtInventoryPluginContext,
+) : KtInventory(context, 1) {
     override fun title() = "Teleport"
 
     init {

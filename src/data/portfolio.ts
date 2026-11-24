@@ -1,11 +1,11 @@
-import strataExample from "../examples/strata/playerRow.kt?raw";
+import strataExample from "../examples/strata/PlayerRow.kt?raw";
 import minecraftSkillsExample from "../examples/minecraft-skills/pack-format.console?raw";
 import ktconfigExample from "../examples/ktconfig/ServerConfig.kt?raw";
 import ktconfigOutput from "../examples/ktconfig/config.yml?raw";
 import ktinventoryExample from "../examples/ktinventory/SimpleMenu.kt?raw";
 import ktadvancementsExample from "../examples/ktadvancements/TestAdvancement.kt?raw";
 import minecraftServerGradlePluginExample from "../examples/minecraft-server-gradle-plugin/build.gradle.kts?raw";
-import kgitExample from "../examples/kgit/clone.kt?raw";
+import kgitExample from "../examples/kgit/clone.kts?raw";
 import halExtensionExample from "../examples/hal-extension/motor.cpp?raw";
 
 export interface Work {
@@ -24,10 +24,8 @@ export type Example =
   | { kind: "image"; src: string; alt: string }
   | {
       kind: "code";
-      label: string;
       language: "kotlin" | "shell-json" | "cpp" | "yaml";
       code: string;
-      scroll?: boolean;
     };
 export interface Library extends Work {
   description: string;
@@ -110,7 +108,6 @@ export const libraries: Library[] = [
     examples: [
       {
         kind: "code",
-        label: "playerRow",
         language: "kotlin",
         code: strataExample,
       },
@@ -130,7 +127,6 @@ export const libraries: Library[] = [
     examples: [
       {
         kind: "code",
-        label: "Terminal",
         language: "shell-json",
         code: minecraftSkillsExample,
       },
@@ -146,13 +142,11 @@ export const libraries: Library[] = [
     examples: [
       {
         kind: "code",
-        label: "ServerConfig.kt",
         language: "kotlin",
         code: ktconfigExample,
       },
       {
         kind: "code",
-        label: "config.yml",
         language: "yaml",
         code: ktconfigOutput,
       },
@@ -169,7 +163,6 @@ export const libraries: Library[] = [
     examples: [
       {
         kind: "code",
-        label: "SimpleMenu.kt",
         language: "kotlin",
         code: ktinventoryExample,
       },
@@ -190,10 +183,8 @@ export const libraries: Library[] = [
     examples: [
       {
         kind: "code",
-        label: "TestAdvancement.kt",
         language: "kotlin",
         code: ktadvancementsExample,
-        scroll: true,
       },
       {
         kind: "image",
@@ -211,7 +202,6 @@ export const libraries: Library[] = [
     examples: [
       {
         kind: "code",
-        label: "build.gradle.kts",
         language: "kotlin",
         code: minecraftServerGradlePluginExample,
       },
@@ -225,7 +215,6 @@ export const libraries: Library[] = [
     examples: [
       {
         kind: "code",
-        label: "Kotlin",
         language: "kotlin",
         code: kgitExample,
       },
@@ -240,7 +229,6 @@ export const libraries: Library[] = [
     examples: [
       {
         kind: "code",
-        label: "C++",
         language: "cpp",
         code: halExtensionExample,
       },

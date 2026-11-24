@@ -34,7 +34,8 @@ export async function highlight(example: Extract<Example, { kind: "code" }>) {
   return (await highlighter).codeToHtml(example.code.trimEnd(), {
     lang: example.language,
     themes,
-    defaultColor: "light-dark()",
+    defaultColor: false,
+    colorReplacements: { [themes.light]: { "#6e7781": "#636c76" } },
     tabindex: false,
   });
 }

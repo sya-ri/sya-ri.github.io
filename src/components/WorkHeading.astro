@@ -8,8 +8,8 @@ const { work } = Astro.props;
 
 <header class="work-heading">
   <h2 id={`heading-${work.slug}`}>
-    {work.logo && <img class="brand" src={work.logo} alt="" width="40" height="40" />}
     {work.name}
+    {work.logo && <img class="brand" src={work.logo} alt="" width="40" height="40" />}
   </h2>
   <div class="work-links">
     {work.website && (

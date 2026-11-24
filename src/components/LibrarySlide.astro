@@ -25,12 +25,11 @@ const stacked = library.layout === "stacked";
         </figure>
       ) : (
         <figure class="code-pane">
-          <figcaption>{example.label}</figcaption>
           <div
-            class:list={[{ "code-scroll": stacked, "long-code": example.scroll }]}
-            tabindex={stacked || example.scroll ? 0 : undefined}
-            role={stacked || example.scroll ? "region" : undefined}
-            aria-label={stacked || example.scroll ? example.label : undefined}
+            class:list={[{ "code-scroll": stacked }]}
+            tabindex={stacked ? 0 : undefined}
+            role={stacked ? "region" : undefined}
+            aria-label={stacked ? `${library.name} code example` : undefined}
             set:html={await highlight(example)}
           />
         </figure>

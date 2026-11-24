@@ -104,7 +104,7 @@ button:focus-visible,
   position: relative;
   min-width: 0;
   display: grid;
-  align-content: center;
+  align-content: start;
   grid-template-columns: minmax(0, 1fr);
   gap: 16px;
 }
@@ -140,6 +140,7 @@ button:focus-visible,
   background: var(--paper);
 }
 .work.about {
+  align-content: center;
   grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
   align-items: center;
   gap: clamp(14px, 4vw, 64px);
@@ -154,18 +155,11 @@ button:focus-visible,
   margin-top: 1rem;
   font-size: clamp(1.1rem, 2.15vw, 1.65rem);
   line-height: 1.38;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: -0.025em;
 }
 .role span {
   display: inline-block;
-}
-.intro {
-  max-width: 38ch;
-  margin-top: 1rem;
-  font-size: clamp(1rem, 1.7vw, 1.2rem);
-  line-height: 1.56;
-  color: var(--muted);
 }
 .socials {
   gap: 20px;
@@ -218,11 +212,15 @@ button:focus-visible,
 }
 .work-heading {
   grid-column: 1/-1;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
   min-width: 0;
 }
 .work-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
   min-width: 0;
   font-size: clamp(1.65rem, 4vw, 3.5rem);
   font-weight: 650;
@@ -231,11 +229,9 @@ button:focus-visible,
   overflow-wrap: anywhere;
 }
 .work-heading .brand {
-  display: inline-block;
-  vertical-align: middle;
+  flex: none;
   width: 0.98em;
   height: 0.98em;
-  margin-right: 0.3em;
   object-fit: contain;
 }
 .work-links {
@@ -317,21 +313,18 @@ button:focus-visible,
   height: auto;
   max-width: 510px;
 }
+.work.library {
+  gap: 12px;
+}
 .code-pane {
   min-width: 0;
-  border-top: 2px solid var(--ink);
 }
-.code-pane figcaption {
-  display: flex;
-  align-items: center;
-  min-height: 42px;
-  border-bottom: 1px solid var(--line);
-  font-size: 0.875rem;
-  font-weight: 550;
+.shiki,
+.shiki span {
+  color: light-dark(var(--shiki-light), var(--shiki-dark));
 }
 .code-pane pre {
   white-space: pre-wrap;
-  padding: clamp(12px, 1.8vw, 24px);
   overflow-wrap: anywhere;
   font:
     400 clamp(0.8125rem, 1.22vw, 1rem)/1.5 "IBM Plex Mono",
@@ -350,12 +343,6 @@ button:focus-visible,
   min-width: 100%;
   white-space: pre;
   overflow-wrap: normal;
-}
-.code-pane .long-code {
-  max-height: clamp(245px, 46svh, 440px);
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--keyline) var(--paper);
 }
 @media (max-width: 650px) {
   .work.project,
@@ -378,7 +365,7 @@ button:focus-visible,
 @media (max-width: 500px) {
   .work.about {
     grid-template-columns: minmax(0, 1fr) 28%;
-    grid-template-areas: "name portrait" "role role" "intro intro" "socials socials";
+    grid-template-areas: "name portrait" "role role" "socials socials";
     gap: 6px 8px;
   }
   .bio {
@@ -393,10 +380,6 @@ button:focus-visible,
   .role {
     grid-area: role;
     margin: 0;
-  }
-  .intro {
-    grid-area: intro;
-    margin: 6px 0 0;
   }
   .socials {
     grid-area: socials;

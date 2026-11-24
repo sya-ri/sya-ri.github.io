@@ -1,0 +1,16 @@
+[tools]
+node = "26.13.1"
+pnpm = "12.23.0"
+java = "temurin-21"
+
+[tools."http:ktlint-cli"]
+version = "1.8.0"
+url = "https://github.com/ktlint/ktlint/releases/download/{{ version }}/ktlint"
+checksum = "sha256:a3fd620207d5c40da6ca789b95e7f823c54e854b7fade7f613e91096a3706d75"
+bin = "ktlint.jar"
+
+[tasks.check-kotlin]
+run = 'java -jar "{{ tools["http:ktlint-cli"].path }}/ktlint.jar" "src/examples/**/*.{kt,kts}"'
+
+[tasks.format-kotlin]
+run = 'java -jar "{{ tools["http:ktlint-cli"].path }}/ktlint.jar" --format "src/examples/**/*.{kt,kts}"'

@@ -21,7 +21,7 @@ const stacked = library.layout === "stacked";
     {library.examples.map(async (example) =>
       example.kind === "image" ? (
         <figure class="example-image">
-          <img src={example.src} alt={example.alt} />
+          <img src={example.src} alt={example.alt} width={example.width} height={example.height} />
         </figure>
       ) : (
         <figure class="code-pane">

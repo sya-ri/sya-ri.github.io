@@ -21,7 +21,7 @@ export interface Project extends Work {
   image: { src: string; alt: string; width: number; height: number };
 }
 export type Example =
-  | { kind: "image"; src: string; alt: string }
+  | { kind: "image"; src: string; alt: string; width: number; height: number }
   | {
       kind: "code";
       language: "kotlin" | "shell-json" | "cpp" | "yaml";
@@ -114,6 +114,8 @@ export const libraries: Library[] = [
       {
         kind: "image",
         src: "/images/strata-screen.webp",
+        width: 440,
+        height: 72,
         alt: "Alex’s player head beside the name Alex, the role Builder, and an Invite button.",
       },
     ],
@@ -168,6 +170,8 @@ export const libraries: Library[] = [
       {
         kind: "image",
         src: "/images/ktinventory-screen.webp",
+        width: 512,
+        height: 93,
         alt: "A nine-slot menu with a red bed in the fourth slot and a compass in the sixth.",
       },
     ],
@@ -188,6 +192,8 @@ export const libraries: Library[] = [
       {
         kind: "image",
         src: "/images/ktadvancements-screen.png",
+        width: 386,
+        height: 74,
         alt: "A grass block leads to a stone advancement. Its tooltip shows three of ten steps complete.",
       },
     ],

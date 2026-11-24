@@ -111,7 +111,7 @@ button:focus-visible,
   grid-template-columns: minmax(0, 1fr);
   gap: 16px;
 }
-#portfolio[data-enhanced] .reader {
+#portfolio[data-layout="horizontal"] .reader {
   container-type: inline-size;
   overflow-x: auto;
   overflow-y: hidden;
@@ -119,7 +119,7 @@ button:focus-visible,
   scrollbar-width: thin;
   scrollbar-color: var(--keyline) var(--paper);
 }
-#portfolio[data-enhanced] .work-grid {
+#portfolio[data-layout="horizontal"] .work-grid {
   width: max-content;
   grid-auto-flow: column;
   grid-auto-columns: calc(100cqi - 8px);
@@ -127,13 +127,13 @@ button:focus-visible,
   height: var(--active-height, auto);
   overflow: clip;
 }
-#portfolio[data-enhanced] .work {
+#portfolio[data-layout="horizontal"] .work {
   min-height: var(--stage-height);
 }
 .walk-lane {
   display: none;
 }
-#portfolio[data-enhanced] .walk-lane {
+#portfolio[data-layout="horizontal"] .walk-lane {
   display: block;
   position: sticky;
   left: 0;
@@ -341,39 +341,133 @@ button:focus-visible,
   white-space: pre;
   overflow-wrap: normal;
 }
-@media (max-width: 650px) {
-  .project-preview {
-    max-width: 450px;
+@media (max-width: 768px), (max-width: 1024px) and (pointer: coarse) {
+  :root {
+    scroll-padding-block: 3.5rem max(12px, env(safe-area-inset-bottom));
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
-  .example-image {
-    padding-top: 0;
-    width: min(100%, 360px);
+  #portfolio {
+    --page-padding: clamp(16px, 4vw, 32px);
+    padding-block: 0 max(var(--page-padding), env(safe-area-inset-bottom));
   }
-  .work-heading {
-    gap: 4px;
+  .signature {
+    position: sticky;
+    z-index: 4;
+    top: 0;
+    padding-block: 6px;
+    margin: 0 calc(-1 * var(--page-padding));
+    padding-inline: var(--page-padding);
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
   }
-}
-@media (max-width: 500px) {
+  .signature > a {
+    font-size: 1.05rem;
+  }
+  .section-nav {
+    gap: clamp(10px, 3vw, 20px);
+  }
+  .section-nav a {
+    font-size: 0.875rem;
+  }
+  .work-grid {
+    max-width: 44rem;
+    margin-inline: auto;
+    padding: 0;
+    gap: clamp(40px, 9vw, 68px);
+  }
+  .work {
+    scroll-margin-block-start: 12px;
+  }
+  .work:last-child {
+    min-height: calc(100svh - 5rem);
+  }
   .work.about {
-    grid-template-columns: minmax(0, 1fr) 28%;
-    grid-template-areas: "name portrait" "role role" "socials socials";
-    gap: 6px 8px;
+    grid-template-columns: minmax(0, 1fr) 38%;
+    grid-template-areas: "name portrait" "role portrait" "socials socials";
+    gap: 6px 10px;
+    padding-top: clamp(28px, 6vw, 48px);
   }
   .bio {
     display: contents;
   }
   .bio h1 {
     grid-area: name;
-  }
-  .portrait-switch {
-    grid-area: portrait;
+    align-self: end;
+    font-size: clamp(2.6rem, 9vw, 3.6rem);
   }
   .role {
     grid-area: role;
+    align-self: start;
     margin: 0;
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+  .role span {
+    display: block;
+  }
+  .role .role-separator {
+    display: none;
   }
   .socials {
     grid-area: socials;
-    margin-top: 2px;
+    flex-wrap: wrap;
+    gap: 0 16px;
+    margin: 0;
+  }
+  .portrait-switch {
+    grid-area: portrait;
+    width: min(100%, 190px);
+    aspect-ratio: 1;
+    overflow: clip;
+    display: grid;
+    place-items: center;
+  }
+  .portrait-switch svg {
+    width: 128%;
+    max-width: none;
+    justify-self: center;
+  }
+  .work-heading {
+    margin: 0;
+    align-items: center;
+    gap: 6px;
+  }
+  .work-heading h2 {
+    display: block;
+    font-size: clamp(1.375rem, 5.7vw, 1.875rem);
+    line-height: 1.2;
+  }
+  .work-heading .brand {
+    margin-inline-start: 0.3em;
+    vertical-align: -0.12em;
+  }
+  .project-summary {
+    font-size: 1.0625rem;
+  }
+  .project-description,
+  .library-description {
+    font-size: 1rem;
+    max-width: none;
+  }
+  .project-preview {
+    --bleed: min(12px, calc(var(--page-padding) - 6px));
+    width: calc(100% + 2 * var(--bleed));
+    max-width: none;
+    margin-inline: calc(-1 * var(--bleed));
+  }
+  .example-image,
+  .stacked .example-image img {
+    width: 100%;
+  }
+  .code-scroll pre {
+    width: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .code-pane .line > span {
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: top;
   }
 }

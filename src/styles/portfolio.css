@@ -212,6 +212,7 @@ button:focus-visible,
 }
 .work-heading {
   grid-column: 1/-1;
+  margin-block-start: clamp(16px, 3svh, 32px);
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
@@ -247,11 +248,6 @@ button:focus-visible,
   height: 20px;
   width: 20px;
 }
-.work.project {
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  align-items: center;
-  column-gap: clamp(24px, 5vw, 70px);
-}
 .project-summary {
   max-width: 43ch;
   font-size: clamp(1.125rem, 2vw, 1.55rem);
@@ -272,7 +268,7 @@ button:focus-visible,
 }
 .project-preview {
   display: block;
-  justify-self: end;
+  justify-self: start;
   width: 100%;
   max-width: 350px;
   height: auto;
@@ -345,14 +341,12 @@ button:focus-visible,
   overflow-wrap: normal;
 }
 @media (max-width: 650px) {
-  .work.project,
   .examples.paired {
     grid-template-columns: minmax(0, 1fr);
   }
   .project-preview {
     width: 78%;
     max-width: 300px;
-    justify-self: start;
   }
   .example-image {
     padding-top: 0;

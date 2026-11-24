@@ -1,0 +1,27 @@
+---
+import portrait from "../assets/shari.svg?raw";
+---
+
+<article id="about" class="work about" data-section="about" aria-labelledby="name">
+  <div class="bio">
+    <h1 id="name">sya_ri</h1>
+    <p class="role">
+      <span>Minecraft Plugin Developer</span> / <span>Fullstack Engineer</span>
+    </p>
+    <p class="intro">
+      I build tools for Minecraft players and developers. I also make audio software and write
+      libraries in Kotlin and C++.
+    </p>
+    <div class="socials">
+      <a href="https://x.com/sya_ri_dayo" aria-label="sya_ri_dayo on X">
+        <span class="social-mark x-mark" aria-hidden="true"></span>@sya_ri_dayo
+      </a>
+      <a href="https://github.com/sya-ri" aria-label="sya-ri on GitHub">
+        <span class="social-mark github-mark" aria-hidden="true"></span>sya-ri
+      </a>
+    </div>
+  </div>
+  <button type="button" class="portrait-switch" data-color-switch aria-label="Change Shari’s color">
+    <Fragment set:html={portrait} />
+  </button>
+</article>

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/works",
+      "destination": "/#projects",
+      "permanent": true
+    },
+    {
+      "source": "/easy-spigot-api",
+      "destination": "https://gh.s7a.dev/EasySpigotAPI",
+      "permanent": true
+    },
+    {
+      "source": "/spigot-event-list",
+      "destination": "https://spigot-event-list.s7a.dev",
+      "permanent": true
+    }
+  ]
+}

@@ -1,4 +1,7 @@
-.idea
-.next
-node_modules
-out
+node_modules/
+.astro/
+.vite/
+.vite-plus/
+dist/
+.vercel/
+.env.local

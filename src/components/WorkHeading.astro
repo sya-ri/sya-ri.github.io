@@ -1,0 +1,36 @@
+---
+import type { Work } from "../data/portfolio";
+interface Props {
+  work: Work;
+}
+const { work } = Astro.props;
+---
+
+<header class="work-heading">
+  <h2 id={`heading-${work.slug}`}>
+    {work.logo && <img class="brand" src={work.logo} alt="" width="40" height="40" />}
+    {work.name}
+  </h2>
+  <div class="work-links">
+    {work.website && (
+      <a href={work.website} aria-label={`${work.name} website`} title="Website">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="9.25" />
+          <ellipse cx="12" cy="12" rx="4" ry="9.25" />
+          <path d="M3 12h18" />
+        </svg>
+      </a>
+    )}
+    {work.github && (
+      <a href={work.github} aria-label={`${work.name} on GitHub`} title="GitHub">
+        <span class="social-mark github-mark" aria-hidden="true"></span>
+      </a>
+    )}
+  </div>
+</header>

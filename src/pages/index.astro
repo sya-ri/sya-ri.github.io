@@ -1,0 +1,70 @@
+---
+import About from "../components/About.astro";
+import LibrarySlide from "../components/LibrarySlide.astro";
+import ProjectSlide from "../components/ProjectSlide.astro";
+import Traveler from "../components/Traveler.astro";
+import { projects, libraries } from "../data/portfolio";
+import favicon from "../assets/shari.svg?url";
+import "../styles/portfolio.css";
+import "../styles/runner.css";
+
+const title = "sya_ri — Minecraft Plugin Developer / Fullstack Engineer";
+const description =
+  "Explore sya_ri’s Minecraft projects, audio tools, and open-source libraries, with working examples and in-game previews.";
+const canonical = new URL("/", Astro.site);
+const sharingImage = new URL("/images/portfolio.png", canonical);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={favicon} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={sharingImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="sya_ri, Minecraft Plugin Developer and Fullstack Engineer, beside Shari."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div id="portfolio">
+      <header class="signature">
+        <span>sya_ri</span>
+        <nav aria-label="Portfolio sections" class="section-nav">
+          <a href="#about" aria-current="location">
+            About
+          </a>
+          <a href="#projects">Projects</a>
+          <a href="#libraries">Libraries</a>
+        </nav>
+      </header>
+      <main class="reader" aria-label="Portfolio" tabindex="0">
+        <div class="work-grid">
+          <About />
+          {projects.map((project, index) => (
+            <ProjectSlide project={project} first={index === 0} />
+          ))}
+          {libraries.map((library, index) => (
+            <LibrarySlide library={library} first={index === 0} />
+          ))}
+        </div>
+        <Traveler />
+      </main>
+    </div>
+    <script>
+      import "../scripts/gallery.js";
+    </script>
+  </body>
+</html>

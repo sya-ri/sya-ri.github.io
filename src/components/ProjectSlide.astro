@@ -1,0 +1,26 @@
+---
+import WorkHeading from "./WorkHeading.astro";
+import type { Project } from "../data/portfolio";
+interface Props {
+  project: Project;
+  first: boolean;
+}
+const { project, first } = Astro.props;
+---
+
+<article
+  class="work project"
+  id={first ? "projects" : project.slug}
+  data-section="projects"
+  aria-labelledby={`heading-${project.slug}`}
+>
+  <WorkHeading work={project} />
+  <div class="project-copy">
+    <p class="project-summary">{project.summary}</p>
+    <p class="project-description">{project.description}</p>
+  </div>
+  <img
+    class:list={["project-preview", { recipe: project.slug === "minecraft-inventory" }]}
+    {...project.image}
+  />
+</article>

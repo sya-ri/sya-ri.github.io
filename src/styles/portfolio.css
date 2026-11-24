@@ -478,7 +478,6 @@ button:focus-visible,
     height: calc(64px + env(safe-area-inset-bottom));
     background: linear-gradient(to top, var(--paper) calc(100% - 6px), transparent);
     z-index: 2;
-    pointer-events: none;
   }
   #portfolio[data-layout="vertical"] .traveler {
     left: max(30px, calc(env(safe-area-inset-left) + 24px));

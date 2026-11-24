@@ -1,8 +1,14 @@
-const root = document.getElementById("portfolio");
-const reader = root.querySelector(".reader"),
-  player = root.querySelector(".player");
+function requireElement(selector: string, parent: ParentNode = document) {
+  const element = parent.querySelector(selector);
+  if (!(element instanceof HTMLElement)) throw new Error(`Missing portfolio element: ${selector}`);
+  return element;
+}
+
+const root = requireElement("#portfolio");
+const reader = requireElement(".reader", root),
+  player = requireElement(".player", root);
 const vertical = matchMedia("(max-width: 768px), (max-width: 1024px) and (pointer: coarse)");
-const header = root.querySelector(".signature");
+const header = requireElement(".signature", root);
 const preference = matchMedia("(prefers-reduced-motion: reduce)");
 
 const colors = [
@@ -14,8 +20,8 @@ const colors = [
   ["purple", "purple"],
 ];
 const colorButtons = root.querySelectorAll("[data-color-switch]");
-const announcement = root.querySelector(".swatch-announcement");
-function selectCoat(key) {
+const announcement = requireElement(".swatch-announcement", root);
+function selectCoat(key?: string | null) {
   const color = colors.find((pair) => pair[0] === key) ?? colors[0];
   root.dataset.coat = color[0];
   colorButtons.forEach((button) =>
@@ -42,19 +48,27 @@ function cycleCoat() {
 colorButtons.forEach((button) => button.addEventListener("click", cycleCoat));
 
 const unit = 3.125;
-const px = (n) => n * unit + "px";
-const make = (parent, cls) => {
+const px = (n: number) => n * unit + "px";
+const make = (parent: HTMLElement, cls: string) => {
   const el = document.createElement("div");
   el.className = cls;
   parent.append(el);
   return el;
 };
 // The skin has an opaque base and no outer layer.
-function part(x, y, w, h, d, u, v) {
+function part(x: number, y: number, w: number, h: number, d: number, u: number, v: number) {
   const joint = make(player, "joint");
   Object.assign(joint.style, { left: px(x), top: px(y), width: px(w), height: px(h) });
 
-  function face(fw, fh, tx, ty, rotation, depth, light) {
+  function face(
+    fw: number,
+    fh: number,
+    tx: number,
+    ty: number,
+    rotation: string,
+    depth: number,
+    light: number,
+  ) {
     const surface = make(joint, "face");
     Object.assign(surface.style, {
       width: px(fw),
@@ -89,10 +103,10 @@ function buildPlayer() {
   for (const wing of [wingLeft, wingRight]) make(wing, "wing-core");
   return { head, rightArm, leftArm, rightLeg, leftLeg, wingLeft, wingRight };
 }
-let model;
+let model: ReturnType<typeof buildPlayer> | undefined;
 const profileAngle = 48;
 const headTurn = -25;
-function scrollToPosition(value) {
+function scrollToPosition(value: number) {
   if (vertical.matches) window.scrollTo({ top: value, behavior: "instant" });
   else reader.scrollLeft = value;
 }
@@ -101,15 +115,24 @@ let ground = reader.scrollLeft,
   step = 0,
   yaw = profileAngle,
   direction = 1;
-let wheelTarget = null,
+let wheelTarget: number | null = null,
   frame = 0,
   stamp = 0;
-let alignTimer,
+let alignTimer: number | undefined,
   correcting = false,
   touching = false;
-let trip = null;
+interface Trip {
+  from: number;
+  to: number;
+  flying: boolean;
+  progress: number;
+  start: number;
+  duration: number;
+}
+
+let trip: Trip | null = null;
 let idle = false,
-  gaze = null;
+  gaze: Animation | null = null;
 const look = (turn = 0, up = 0, tilt = 0) =>
   "rotateY(" +
   turn * direction +
@@ -125,7 +148,7 @@ function cancelGaze() {
 function standStill() {
   cancelGaze();
   idle = true;
-  if (vertical.matches) return;
+  if (vertical.matches || !model) return;
   const { head } = model;
   head.style.transform = look(headTurn);
   if (preference.matches) return;
@@ -154,7 +177,7 @@ function standStill() {
   );
 }
 function beginWalk() {
-  if (!idle) return;
+  if (!idle || !model) return;
   const { head } = model;
   const from = getComputedStyle(head).transform;
   cancelGaze();
@@ -162,7 +185,7 @@ function beginWalk() {
   gaze = head.animate([{ transform: from }, {}], { duration: 180, easing: "ease-out" });
 }
 function pose() {
-  if (vertical.matches) return;
+  if (vertical.matches || !model) return;
   const { head, rightArm, leftArm, rightLeg, leftLeg, wingLeft, wingRight } = model;
   const unfold = trip?.flying
     ? Math.max(0, Math.min(1, trip.progress / 0.22, (1 - trip.progress) / 0.24))
@@ -206,7 +229,7 @@ function pose() {
   if (!idle)
     head.style.transform = "rotateX(" + 84 * glide + "deg) rotateY(" + headTurn * facing + "deg)";
 }
-function tick(now) {
+function tick(now: number) {
   frame = 0;
   const dt = Math.min(50, Math.max(1, now - (stamp || now - 16)));
   stamp = now;
@@ -296,13 +319,13 @@ reader.addEventListener(
   },
   { passive: true },
 );
-function releaseTouch(event) {
+function releaseTouch(event: TouchEvent) {
   touching = event.touches.length > 0;
   if (!touching) scheduleAlignment();
 }
 reader.addEventListener("touchend", releaseTouch, { passive: true });
 reader.addEventListener("touchcancel", releaseTouch, { passive: true });
-function galleryWheel(event) {
+function galleryWheel(event: WheelEvent) {
   endTrip();
   cancelAlignment();
   if (event.ctrlKey || event.shiftKey || Math.abs(event.deltaX) >= Math.abs(event.deltaY)) {
@@ -330,7 +353,7 @@ reader.addEventListener("keydown", (event) => {
     !["ArrowLeft", "ArrowRight"].includes(event.key)
   )
     return;
-  const code = event.target.closest(".code-scroll");
+  const code = event.target instanceof Element && event.target.closest(".code-scroll");
   if (code && code.scrollWidth > code.clientWidth) return;
   event.preventDefault();
   moveCard(event.key === "ArrowRight" ? 1 : -1);
@@ -358,9 +381,9 @@ preference.addEventListener("change", () => {
   pose();
   standStill();
 });
-const cards = [...reader.querySelectorAll(".work-grid > .work")];
-const track = root.querySelector(".work-grid");
-const links = [...root.querySelectorAll('.signature a[href^="#"]')];
+const cards = [...reader.querySelectorAll<HTMLElement>(".work-grid > .work")];
+const track = requireElement(".work-grid", root);
+const links = [...root.querySelectorAll<HTMLAnchorElement>('.signature a[href^="#"]')];
 function applyLayout() {
   root.dataset.layout = vertical.matches ? "vertical" : "horizontal";
   reader.removeEventListener("wheel", galleryWheel);
@@ -370,12 +393,12 @@ function applyLayout() {
   }
 }
 applyLayout();
-const offsetOf = (index) => cards[index].offsetLeft - cards[0].offsetLeft;
-const clampPage = (index) => Math.max(0, Math.min(cards.length - 1, index));
+const offsetOf = (index: number) => cards[index].offsetLeft - cards[0].offsetLeft;
+const clampPage = (index: number) => Math.max(0, Math.min(cards.length - 1, index));
 let pageStep = offsetOf(1);
 let settledPage = clampPage(Math.round(reader.scrollLeft / Math.max(1, pageStep)));
 let activePage = settledPage;
-function verticalOffset(index) {
+function verticalOffset(index: number) {
   if (index === 0) return 0;
   return Math.max(
     0,
@@ -404,7 +427,7 @@ function endTrip() {
   trip = null;
   delete root.dataset.trip;
 }
-function travelTo(index) {
+function travelTo(index: number) {
   cancelAlignment();
   endTrip();
   wheelTarget = null;
@@ -431,6 +454,8 @@ function travelTo(index) {
 for (const link of links) {
   link.addEventListener("click", (event) => {
     if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+    const index = cards.findIndex((card) => card.id === link.hash.slice(1));
+    if (index === -1) return;
     event.preventDefault();
     if (location.hash !== link.hash) {
       if (vertical.matches) {
@@ -438,7 +463,7 @@ for (const link of links) {
       }
       history.pushState(null, "", link.hash);
     }
-    travelTo(cards.indexOf(document.getElementById(link.hash.slice(1))));
+    travelTo(index);
   });
 }
 function cancelAlignment() {
@@ -449,7 +474,7 @@ function cancelAlignment() {
 function scheduleAlignment() {
   clearTimeout(alignTimer);
   if (vertical.matches || touching || trip || wheelTarget !== null) return;
-  alignTimer = setTimeout(() => {
+  alignTimer = window.setTimeout(() => {
     if (window.getSelection()?.isCollapsed === false) return;
     const index = landingPage();
     const left = Math.min(offsetOf(index), reader.scrollWidth - reader.clientWidth);
@@ -507,7 +532,7 @@ function markCurrent() {
   const hash = "#" + page.id;
   if (!trip && location.hash !== hash) history.replaceState(null, "", hash);
 }
-function moveCard(direction) {
+function moveCard(direction: number) {
   const target = clampPage(activePage + direction);
   travelTo(target);
 }
@@ -543,10 +568,10 @@ restoreLocation();
 ground = reader.scrollLeft;
 
 // A new project passing into view briefly catches sya-ri's eye.
-let glance = null;
-const tracked = new Set();
-function glanceAtEntry(changes) {
-  if (vertical.matches) return;
+let glance: Animation | null = null;
+const tracked = new Set<Element>();
+function glanceAtEntry(changes: IntersectionObserverEntry[]) {
+  if (vertical.matches || !model) return;
   const { head } = model;
   for (const entry of changes) {
     const returning = tracked.has(entry.target);

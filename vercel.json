@@ -27,7 +27,7 @@
     }
   },
   "functions": {
-    "api/icon.js": {
+    "api/icon.ts": {
       "includeFiles": "src/assets/sya-ri.svg"
     }
   },

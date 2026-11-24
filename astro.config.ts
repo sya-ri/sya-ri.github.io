@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import icon from "./api/icon.js";
+import icon from "./api/icon.ts";
 
 export default defineConfig({
   site: "https://s7a.dev",

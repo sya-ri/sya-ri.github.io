@@ -168,7 +168,6 @@ export const libraries: Library[] = [
         label: "SimpleMenu.kt",
         language: "kotlin",
         code: ktinventoryExample,
-        scroll: true,
       },
       {
         kind: "image",

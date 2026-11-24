@@ -1,3 +1,4 @@
+import type { IncomingMessage, ServerResponse } from "node:http";
 import { readFileSync } from "node:fs";
 import sharp from "sharp";
 
@@ -5,13 +6,13 @@ const artwork = readFileSync("src/assets/sya-ri.svg", "utf8");
 const rgb = "[0-9a-f]{3}(?:[0-9a-f]{3})?";
 const variantPattern = new RegExp(`^(${rgb})-(${rgb})(?:-(${rgb}))?\\.(svg|png)$`, "i");
 
-export default async function icon(request, response) {
+export default async function icon(request: IncomingMessage, response: ServerResponse) {
   if (request.method !== "GET" && request.method !== "HEAD") {
     response.writeHead(405, { Allow: "GET, HEAD" }).end();
     return;
   }
 
-  const url = new URL(request.url, "http://localhost");
+  const url = new URL(request.url ?? "/", "http://localhost");
   const variant = url.pathname.startsWith("/icon-")
     ? url.pathname.slice("/icon-".length)
     : url.searchParams.get("variant");

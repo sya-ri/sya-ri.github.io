@@ -44,7 +44,7 @@ const sharingImage = new URL("/images/portfolio.png", canonical);
         <a href="#about" aria-label="sya_ri — About">
           sya_ri
         </a>
-        <nav aria-label="Portfolio sections" class="section-nav">
+        <nav aria-label="Main" class="section-nav">
           <a data-section="about" href="#about" aria-current="location">
             About
           </a>
@@ -54,6 +54,7 @@ const sharingImage = new URL("/images/portfolio.png", canonical);
           <a data-section="libraries" href={`#${libraries[0].slug}`}>
             Libraries
           </a>
+          <a href="/privacy">Privacy</a>
         </nav>
       </header>
       <main class="reader" aria-label="Portfolio" tabindex="0">
@@ -70,7 +71,7 @@ const sharingImage = new URL("/images/portfolio.png", canonical);
       </main>
     </div>
     <script>
-      import "../scripts/gallery.js";
+      import "../scripts/gallery";
     </script>
   </body>
 </html>

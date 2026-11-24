@@ -174,17 +174,6 @@ button:focus-visible,
   font-size: 0.92rem;
   font-weight: 600;
 }
-.privacy-link {
-  display: inline-flex;
-  align-items: center;
-  justify-self: start;
-  min-height: 44px;
-  color: var(--muted);
-  font-size: 0.875rem;
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
-}
-.privacy-link:hover,
 .signature > a:hover,
 .socials a:hover,
 .work-links a:hover {
@@ -395,7 +384,7 @@ button:focus-visible,
   }
   .work.about {
     grid-template-columns: minmax(0, 1fr) 38%;
-    grid-template-areas: "name portrait" "role portrait" "socials socials" "privacy privacy";
+    grid-template-areas: "name portrait" "role portrait" "socials socials";
     gap: 6px 10px;
     padding-top: clamp(28px, 6vw, 48px);
   }
@@ -419,9 +408,6 @@ button:focus-visible,
   }
   .role .role-separator {
     display: none;
-  }
-  .privacy-link {
-    grid-area: privacy;
   }
   .socials {
     grid-area: socials;

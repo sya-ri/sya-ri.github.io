@@ -51,7 +51,7 @@ export const projects: Project[] = [
   {
     slug: "spigot-event-list",
     name: "Spigot Event List",
-    website: "https://spigot-event-list.s7a.dev/en",
+    website: "https://spigot-event-list.s7a.dev/",
     github: "https://github.com/sya-ri/spigot-event-list",
     summary: "Which event fires when a player joins a server?",
     description:
@@ -81,7 +81,7 @@ export const projects: Project[] = [
   {
     slug: "orvia",
     name: "Orvia",
-    website: "https://orvia.s7a.dev/#listen",
+    website: "https://orvia.s7a.dev/",
     github: "https://github.com/orvia-audio/orvia",
     summary: "Orvia gives you control over how your microphone sounds.",
     description:

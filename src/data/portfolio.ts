@@ -57,8 +57,8 @@ export const projects: Project[] = [
     description:
       "Search for “join” to find the event your plugin needs. Check which servers and proxies support it, or switch versions to see when it was available.",
     image: {
-      src: "/images/spigot-event-list.webp",
-      alt: "A white faucet above the Spigot Event List wordmark.",
+      src: "/images/spigot-event-list.svg",
+      alt: "The Spigot Event List logo with a white pulse line on a dark square.",
       width: 1100,
       height: 578,
     },

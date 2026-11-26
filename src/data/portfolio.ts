@@ -1,11 +1,15 @@
 import strataExample from "../examples/strata/PlayerRow.kt?raw";
 import minecraftSkillsExample from "../examples/minecraft-skills/pack-format.console?raw";
+import crafleetExample from "../examples/crafleet/server-setup.console?raw";
 import ktconfigExample from "../examples/ktconfig/ServerConfig.kt?raw";
 import ktconfigOutput from "../examples/ktconfig/config.yml?raw";
 import ktinventoryExample from "../examples/ktinventory/SimpleMenu.kt?raw";
 import ktadvancementsExample from "../examples/ktadvancements/TestAdvancement.kt?raw";
 import minecraftServerGradlePluginExample from "../examples/minecraft-server-gradle-plugin/build.gradle.kts?raw";
 import kgitExample from "../examples/kgit/clone.kts?raw";
+import fiktionExample from "../examples/fiktion/PaidOrder.kt?raw";
+import fastTypedXmlExample from "../examples/fast-typed-xml/parse-book.ts?raw";
+import sqldelightCheckExample from "../examples/sqldelight-check/format-query.diff?raw";
 import halExtensionExample from "../examples/hal-extension/motor.cpp?raw";
 
 export interface Work {
@@ -15,23 +19,75 @@ export interface Work {
   github?: string;
   logo?: string;
 }
-export interface Project extends Work {
+interface WorkImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+export interface Activity extends Work {
+  role: string;
+  description: string;
+  image: WorkImage;
+}
+export type Project = Work & {
   summary: string;
   description: string;
-  image: { src: string; alt: string; width: number; height: number };
+} & ({ image: WorkImage } | { example: CodeExample });
+export interface CodeExample {
+  kind: "code";
+  language: "kotlin" | "shell-json" | "cpp" | "yaml" | "typescript" | "diff";
+  code: string;
 }
-export type Example =
-  | { kind: "image"; src: string; alt: string; width: number; height: number }
-  | {
-      kind: "code";
-      language: "kotlin" | "shell-json" | "cpp" | "yaml";
-      code: string;
-    };
+export type Example = ({ kind: "image" } & WorkImage) | CodeExample;
 export interface Library extends Work {
   description: string;
   layout?: "stacked";
   examples: Example[];
 }
+
+export const activities: Activity[] = [
+  {
+    slug: "wanko-zushi",
+    name: "wanko-zushi",
+    website: "https://wanko-zushi.com",
+    role: "Minecraft Plugin Developer",
+    description:
+      "I build custom plugins for Minecraft videos and events with the wanko-zushi team.",
+    image: {
+      src: "/images/wanko-zushi.webp",
+      alt: "The wanko-zushi banner with a Minecraft village behind its Japanese tagline.",
+      width: 1200,
+      height: 675,
+    },
+  },
+  {
+    slug: "try-swift-tokyo",
+    name: "try! Swift Tokyo",
+    website: "https://tryswift.jp/",
+    role: "Organizer",
+    description: "I help organize an international conference for Swift developers in Tokyo.",
+    image: {
+      src: "/images/try-swift-tokyo.webp",
+      alt: "The try! Swift mascot over a colorful Tokyo skyline.",
+      width: 1200,
+      height: 630,
+    },
+  },
+  {
+    slug: "love-kotlin",
+    name: "#love_kotlin",
+    website: "https://x.com/search?q=%23love_kotlin",
+    role: "Staff",
+    description: "I help run meetups where Kotlin developers share what they’re working on.",
+    image: {
+      src: "/images/love-kotlin.webp",
+      alt: "The Kotlin Meetup logo.",
+      width: 462,
+      height: 294,
+    },
+  },
+];
 
 export const projects: Project[] = [
   {
@@ -93,6 +149,32 @@ export const projects: Project[] = [
       height: 640,
     },
   },
+  {
+    slug: "minecraft-skills",
+    name: "minecraft-skills",
+    github: "https://github.com/sya-ri/minecraft-skills",
+    summary: "Look up Minecraft data for the version you’re building for.",
+    description:
+      "Check a release’s pack format from your terminal. AI assistants can query the same versioned data over MCP.",
+    example: {
+      kind: "code",
+      language: "shell-json",
+      code: minecraftSkillsExample,
+    },
+  },
+  {
+    slug: "crafleet",
+    name: "Crafleet",
+    github: "https://github.com/sya-ri/crafleet",
+    summary: "Manage a Minecraft server from your terminal.",
+    description:
+      "Install the server and its plugins, check its configuration, and manage backups with one CLI.",
+    example: {
+      kind: "code",
+      language: "shell-json",
+      code: crafleetExample,
+    },
+  },
 ];
 
 export const libraries: Library[] = [
@@ -117,20 +199,6 @@ export const libraries: Library[] = [
         width: 440,
         height: 72,
         alt: "Alex’s player head beside the name Alex, the role Builder, and an Invite button.",
-      },
-    ],
-  },
-  {
-    slug: "minecraft-skills",
-    name: "minecraft-skills",
-    github: "https://github.com/sya-ri/minecraft-skills",
-    description:
-      "Look up the pack format for a specific Minecraft release from your terminal. AI assistants can query the same versioned data over MCP.",
-    examples: [
-      {
-        kind: "code",
-        language: "shell-json",
-        code: minecraftSkillsExample,
       },
     ],
   },
@@ -222,6 +290,49 @@ export const libraries: Library[] = [
         kind: "code",
         language: "kotlin",
         code: kgitExample,
+      },
+    ],
+  },
+  {
+    slug: "fiktion",
+    name: "Fiktion",
+    website: "https://fiktion.s7a.dev/",
+    github: "https://github.com/sya-ri/fiktion",
+    description:
+      "Generate test data from Kotlin types and set just the values your test cares about.",
+    examples: [
+      {
+        kind: "code",
+        language: "kotlin",
+        code: fiktionExample,
+      },
+    ],
+  },
+  {
+    slug: "fast-typed-xml",
+    name: "fast-typed-xml",
+    github: "https://github.com/sya-ri/fast-typed-xml",
+    description: "Describe your XML once and get typed values when you parse it in TypeScript.",
+    examples: [
+      {
+        kind: "code",
+        language: "typescript",
+        code: fastTypedXmlExample,
+      },
+    ],
+  },
+  {
+    slug: "sqldelight-check",
+    name: "sqldelight-check",
+    website: "https://sqldelight-check.s7a.dev/",
+    github: "https://github.com/sya-ri/sqldelight-check",
+    description:
+      "Keep SQLDelight queries consistent with formatting and lint checks that run in Gradle.",
+    examples: [
+      {
+        kind: "code",
+        language: "diff",
+        code: sqldelightCheckExample,
       },
     ],
   },

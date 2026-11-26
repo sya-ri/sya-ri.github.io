@@ -1,0 +1,3 @@
+$ crafleet install
+$ crafleet plugins add modrinth:luckperms
+$ crafleet doctor

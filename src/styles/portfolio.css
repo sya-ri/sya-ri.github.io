@@ -50,7 +50,6 @@ button:focus-visible,
 }
 #portfolio {
   --page-padding: clamp(16px, 3vw, 48px);
-  --stage-height: max(300px, calc(100svh - 196px - 2 * var(--page-padding)));
   isolation: isolate;
   max-width: 1440px;
   margin-inline: auto;
@@ -96,7 +95,6 @@ button:focus-visible,
 }
 .reader {
   position: relative;
-  --floor: 6px;
 }
 .work-grid {
   display: grid;
@@ -112,35 +110,78 @@ button:focus-visible,
   gap: 16px;
 }
 #portfolio[data-layout="horizontal"] .reader {
-  container-type: inline-size;
+  flex: 1;
+  min-height: 0;
+  container-type: size;
   overflow-x: auto;
   overflow-y: hidden;
   overscroll-behavior-x: contain;
   scrollbar-width: thin;
   scrollbar-color: var(--keyline) var(--paper);
 }
+#portfolio[data-layout="horizontal"] {
+  --lane-height: 110px;
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+}
+#portfolio[data-layout="horizontal"] .signature {
+  flex: none;
+}
 #portfolio[data-layout="horizontal"] .work-grid {
   width: max-content;
+  height: 100%;
   grid-auto-flow: column;
   grid-auto-columns: calc(100cqi - 8px);
-  align-items: start;
-  height: var(--active-height, auto);
+  grid-template-rows: minmax(0, 1fr);
   overflow: clip;
 }
 #portfolio[data-layout="horizontal"] .work {
-  min-height: var(--stage-height);
+  min-height: 0;
+  padding-inline: max(0px, (100cqi - 8px - 48rem) / 2);
+}
+#portfolio[data-layout="horizontal"] .work:not(.about) {
+  grid-template-rows: auto auto minmax(0, 1fr);
 }
 .walk-lane {
   display: none;
 }
 #portfolio[data-layout="horizontal"] .walk-lane {
+  --floor: 6px;
   display: block;
-  position: sticky;
-  left: 0;
-  width: 100%;
-  height: 110px;
-  z-index: 3;
-  background: var(--paper);
+  position: relative;
+  flex: 0 0 var(--lane-height);
+}
+#portfolio[data-layout="horizontal"] .portrait-switch {
+  width: min(100%, 310px, max(44px, 100cqb - 8px));
+}
+#portfolio[data-layout="horizontal"] .project-preview {
+  max-height: 100%;
+  object-position: left top;
+}
+#portfolio[data-layout="horizontal"] .examples {
+  min-height: 0;
+  max-height: 100%;
+  align-self: start;
+}
+#portfolio[data-layout="horizontal"] .examples.stacked {
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+#portfolio[data-layout="horizontal"] .stacked .code-pane {
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  align-self: stretch;
+  min-height: 0;
+}
+#portfolio[data-layout="horizontal"] .example-image img {
+  max-height: clamp(28px, 24cqb, 115px);
+  object-fit: contain;
+  object-position: left top;
+}
+#portfolio[data-layout="horizontal"] [data-scroll-panel] {
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior-y: contain;
 }
 .work.about {
   align-content: center;
@@ -216,9 +257,7 @@ button:focus-visible,
 .work-heading {
   grid-column: 1/-1;
   margin-block-start: clamp(16px, 3svh, 32px);
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
+  gap: clamp(12px, 2vw, 24px);
   min-width: 0;
 }
 .work-heading h2 {
@@ -341,6 +380,46 @@ button:focus-visible,
   white-space: pre;
   overflow-wrap: normal;
 }
+@media (max-height: 500px) {
+  #portfolio[data-layout="horizontal"] {
+    --lane-height: 86px;
+    --traveler-scale: 0.66;
+    padding-block: clamp(6px, 2svh, 12px);
+  }
+  #portfolio[data-layout="horizontal"] .signature {
+    margin-bottom: 6px;
+  }
+  #portfolio[data-layout="horizontal"] .bio h1 {
+    font-size: clamp(2.5rem, 15svh, 5.25rem);
+  }
+  #portfolio[data-layout="horizontal"] .role {
+    margin-top: 8px;
+  }
+  #portfolio[data-layout="horizontal"] .work-heading {
+    margin-block-start: 4px;
+  }
+  #portfolio[data-layout="horizontal"] .work-heading h2 {
+    font-size: clamp(1.55rem, 7svh, 2.5rem);
+  }
+  #portfolio[data-layout="horizontal"] .project {
+    gap: 8px;
+  }
+  #portfolio[data-layout="horizontal"] .project-summary {
+    font-size: clamp(1rem, 4svh, 1.25rem);
+  }
+  #portfolio[data-layout="horizontal"] :is(.project-description, .library-description) {
+    font-size: clamp(0.875rem, 3.8svh, 1rem);
+  }
+  #portfolio[data-layout="horizontal"] .library-description {
+    margin-block: 6px 10px;
+  }
+  #portfolio[data-layout="horizontal"] .examples {
+    gap: 8px;
+  }
+  #portfolio[data-layout="horizontal"] .example-image img {
+    max-height: clamp(24px, 16cqb, 86px);
+  }
+}
 @media (max-width: 768px), (max-width: 1024px) and (pointer: coarse) {
   :root {
     scroll-padding-block: 3.5rem max(12px, env(safe-area-inset-bottom));
@@ -430,8 +509,6 @@ button:focus-visible,
   }
   .work-heading {
     margin: 0;
-    align-items: center;
-    gap: 6px;
   }
   .work-heading h2 {
     display: block;

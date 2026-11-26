@@ -17,7 +17,13 @@ const stacked = library.layout === "stacked";
 >
   <WorkHeading work={library} />
   <p class="library-description">{library.description}</p>
-  <div class:list={["examples", library.layout]}>
+  <div
+    class:list={["examples", library.layout]}
+    data-scroll-panel={!stacked || undefined}
+    tabindex={stacked ? undefined : 0}
+    role={stacked ? undefined : "region"}
+    aria-label={stacked ? undefined : `${library.name} code examples`}
+  >
     {library.examples.map(async (example) =>
       example.kind === "image" ? (
         <figure class="example-image">
@@ -27,6 +33,7 @@ const stacked = library.layout === "stacked";
         <figure class="code-pane">
           <div
             class:list={[{ "code-scroll": stacked }]}
+            data-scroll-panel={stacked || undefined}
             tabindex={stacked ? 0 : undefined}
             role={stacked ? "region" : undefined}
             aria-label={stacked ? `${library.name} code example` : undefined}

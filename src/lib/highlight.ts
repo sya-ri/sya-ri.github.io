@@ -1,5 +1,5 @@
 import { createHighlighter } from "shiki";
-import type { Example } from "../data/portfolio";
+import type { CodeExample } from "../data/portfolio";
 
 const themes = { light: "github-light-default", dark: "github-dark-default" } as const;
 const highlighter = createHighlighter({
@@ -8,6 +8,8 @@ const highlighter = createHighlighter({
     "kotlin",
     "cpp",
     "yaml",
+    "typescript",
+    "diff",
     "shellscript",
     "json",
     {
@@ -30,7 +32,7 @@ const highlighter = createHighlighter({
   ],
 });
 
-export async function highlight(example: Extract<Example, { kind: "code" }>) {
+export async function highlight(example: CodeExample) {
   return (await highlighter).codeToHtml(example.code.trimEnd(), {
     lang: example.language,
     themes,

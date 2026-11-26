@@ -1,9 +1,10 @@
 ---
 import About from "../components/About.astro";
+import ActivitySlide from "../components/ActivitySlide.astro";
 import LibrarySlide from "../components/LibrarySlide.astro";
 import ProjectSlide from "../components/ProjectSlide.astro";
 import Traveler from "../components/Traveler.astro";
-import { projects, libraries } from "../data/portfolio";
+import { activities, projects, libraries } from "../data/portfolio";
 import favicon from "../assets/sya-ri.svg?url";
 import "../styles/portfolio.css";
 import "../styles/runner.css";
@@ -48,6 +49,9 @@ const sharingImage = new URL("/images/portfolio.png", canonical);
           <a data-section="about" href="#about" aria-current="location">
             About
           </a>
+          <a data-section="activities" href={`#${activities[0].slug}`}>
+            Activities
+          </a>
           <a data-section="projects" href={`#${projects[0].slug}`}>
             Projects
           </a>
@@ -59,6 +63,9 @@ const sharingImage = new URL("/images/portfolio.png", canonical);
       <main class="reader" aria-label="Portfolio" tabindex="0">
         <div class="work-grid">
           <About />
+          {activities.map((activity) => (
+            <ActivitySlide activity={activity} />
+          ))}
           {projects.map((project) => (
             <ProjectSlide project={project} />
           ))}
@@ -66,8 +73,8 @@ const sharingImage = new URL("/images/portfolio.png", canonical);
             <LibrarySlide library={library} />
           ))}
         </div>
-        <Traveler />
       </main>
+      <Traveler />
     </div>
     <script>
       import "../scripts/gallery";

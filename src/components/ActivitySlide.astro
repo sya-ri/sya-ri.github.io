@@ -1,0 +1,21 @@
+---
+import WorkHeading from "./WorkHeading.astro";
+import type { Activity } from "../data/portfolio";
+
+interface Props {
+  activity: Activity;
+}
+
+const { activity } = Astro.props;
+---
+
+<article
+  class="work project"
+  id={activity.slug}
+  data-section="activities"
+  aria-labelledby={`heading-${activity.slug}`}
+>
+  <WorkHeading work={activity} />
+  <p class="project-description">{activity.description}</p>
+  <img class="project-preview" {...activity.image} />
+</article>

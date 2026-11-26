@@ -1,6 +1,7 @@
 ---
 import WorkHeading from "./WorkHeading.astro";
 import type { Project } from "../data/portfolio";
+import { highlight } from "../lib/highlight";
 interface Props {
   project: Project;
 }
@@ -14,12 +15,23 @@ const { project } = Astro.props;
   aria-labelledby={`heading-${project.slug}`}
 >
   <WorkHeading work={project} />
-  <div class="project-copy">
-    <p class="project-summary">{project.summary}</p>
-    <p class="project-description">{project.description}</p>
-  </div>
-  <img
-    class:list={["project-preview", { recipe: project.slug === "minecraft-inventory" }]}
-    {...project.image}
-  />
+  <p class="project-description">{project.description}</p>
+  {"image" in project ? (
+    <img
+      class:list={["project-preview", { recipe: project.slug === "minecraft-inventory" }]}
+      {...project.image}
+    />
+  ) : (
+    <div
+      class="examples code-pane"
+      data-scroll-panel
+      role="region"
+      tabindex="0"
+      aria-label={`${project.name} examples`}
+    >
+      {project.examples.map(async (example) => (
+        <Fragment set:html={await highlight(example)} />
+      ))}
+    </div>
+  )}
 </article>

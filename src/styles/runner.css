@@ -88,7 +88,7 @@
   position: absolute;
   left: clamp(42px, 8%, 62px);
   bottom: calc(var(--floor) + 4px);
-  transform: scale(0.86);
+  transform: scale(var(--traveler-scale, 0.86));
   transform-origin: 0 0;
   width: 0;
   height: 0;

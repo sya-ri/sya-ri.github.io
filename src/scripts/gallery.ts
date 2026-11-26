@@ -326,9 +326,20 @@ function releaseTouch(event: TouchEvent) {
 reader.addEventListener("touchend", releaseTouch, { passive: true });
 reader.addEventListener("touchcancel", releaseTouch, { passive: true });
 function galleryWheel(event: WheelEvent) {
+  const verticalWheel = Math.abs(event.deltaY) > Math.abs(event.deltaX);
+  const panel =
+    event.target instanceof Element && event.target.closest<HTMLElement>("[data-scroll-panel]");
+  if (
+    verticalWheel &&
+    !event.ctrlKey &&
+    !event.shiftKey &&
+    panel &&
+    panel.scrollHeight > panel.clientHeight
+  )
+    return;
   endTrip();
   cancelAlignment();
-  if (event.ctrlKey || event.shiftKey || Math.abs(event.deltaX) >= Math.abs(event.deltaY)) {
+  if (event.ctrlKey || event.shiftKey || !verticalWheel) {
     wheelTarget = null;
     return;
   }
@@ -353,7 +364,7 @@ reader.addEventListener("keydown", (event) => {
     !["ArrowLeft", "ArrowRight"].includes(event.key)
   )
     return;
-  const code = event.target instanceof Element && event.target.closest(".code-scroll");
+  const code = event.target instanceof Element && event.target.closest("[data-scroll-panel]");
   if (code && code.scrollWidth > code.clientWidth) return;
   event.preventDefault();
   moveCard(event.key === "ArrowRight" ? 1 : -1);
@@ -382,7 +393,6 @@ preference.addEventListener("change", () => {
   standStill();
 });
 const cards = [...reader.querySelectorAll<HTMLElement>(".work-grid > .work")];
-const track = requireElement(".work-grid", root);
 const links = [...root.querySelectorAll<HTMLAnchorElement>('.signature a[href^="#"]')];
 function applyLayout() {
   root.dataset.layout = vertical.matches ? "vertical" : "horizontal";
@@ -518,9 +528,6 @@ function syncPage() {
     ? clampPage(Math.round(reader.scrollLeft / Math.max(1, pageStep)))
     : landingPage();
   markCurrent();
-  // Keep the travel lane in view on short pages, including the introduction.
-  if (!trip?.flying)
-    track.style.setProperty("--active-height", cards[activePage].offsetHeight + 8 + "px");
 }
 function markCurrent() {
   const page = cards[activePage],

@@ -1,0 +1,8 @@
+# crafleet.yaml
+schemaVersion: 1
+name: survival
+server:
+  type: paper
+  version: "26.2"
+  build: latest
+plugins: {}

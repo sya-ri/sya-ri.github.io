@@ -1,0 +1,7 @@
+  $ ./gradlew sqldelightFix
+
+  listPlayers:
+- select id,name from player order by name;
++ SELECT id, name
++ FROM player
++ ORDER BY name;

@@ -1,6 +1,8 @@
 import strataExample from "../examples/strata/PlayerRow.kt?raw";
 import minecraftSkillsExample from "../examples/minecraft-skills/pack-format.console?raw";
-import crafleetExample from "../examples/crafleet/server-setup.console?raw";
+import crafleetSetup from "../examples/crafleet/server-setup.console?raw";
+import crafleetConfig from "../examples/crafleet/crafleet.yaml?raw";
+import crafleetStart from "../examples/crafleet/server-start.console?raw";
 import ktconfigExample from "../examples/ktconfig/ServerConfig.kt?raw";
 import ktconfigOutput from "../examples/ktconfig/config.yml?raw";
 import ktinventoryExample from "../examples/ktinventory/SimpleMenu.kt?raw";
@@ -31,7 +33,7 @@ export interface Activity extends Work {
 }
 export type Project = Work & {
   description: string;
-} & ({ image: WorkImage } | { example: CodeExample });
+} & ({ image: WorkImage } | { examples: CodeExample[] });
 export interface CodeExample {
   kind: "code";
   language: "kotlin" | "shell-json" | "cpp" | "yaml" | "typescript" | "diff";
@@ -50,7 +52,7 @@ export const activities: Activity[] = [
     name: "wanko-zushi",
     website: "https://wanko-zushi.com",
     description:
-      "I work with the wanko-zushi team as a Minecraft plugin developer, building custom plugins for videos and events.",
+      "I’m one of the two people behind wanko-zushi. I build custom Minecraft plugins for videos and events.",
     image: {
       src: "/images/wanko-zushi.webp",
       alt: "The wanko-zushi banner with a Minecraft village behind its Japanese tagline.",
@@ -150,11 +152,7 @@ export const projects: Project[] = [
     github: "https://github.com/sya-ri/minecraft-skills",
     description:
       "Look up Minecraft data for a specific release, such as its pack format, from your terminal. AI assistants can query the same versioned data over MCP.",
-    example: {
-      kind: "code",
-      language: "shell-json",
-      code: minecraftSkillsExample,
-    },
+    examples: [{ kind: "code", language: "shell-json", code: minecraftSkillsExample }],
   },
   {
     slug: "crafleet",
@@ -162,11 +160,11 @@ export const projects: Project[] = [
     github: "https://github.com/sya-ri/crafleet",
     description:
       "Install a Minecraft server and its plugins, check its configuration, and manage backups from one CLI.",
-    example: {
-      kind: "code",
-      language: "shell-json",
-      code: crafleetExample,
-    },
+    examples: [
+      { kind: "code", language: "shell-json", code: crafleetSetup },
+      { kind: "code", language: "yaml", code: crafleetConfig },
+      { kind: "code", language: "shell-json", code: crafleetStart },
+    ],
   },
 ];
 

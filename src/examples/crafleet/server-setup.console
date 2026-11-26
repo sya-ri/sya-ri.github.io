@@ -1,3 +1,3 @@
-$ crafleet install
-$ crafleet plugins add modrinth:luckperms
-$ crafleet doctor
+$ npm install --global crafleet
+$ crafleet init survival --version 26.2
+$ cd survival

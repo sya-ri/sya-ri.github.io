@@ -23,12 +23,15 @@ const { project } = Astro.props;
     />
   ) : (
     <div
-      class="code-pane project-code"
+      class="examples code-pane"
       data-scroll-panel
       role="region"
       tabindex="0"
-      aria-label={`${project.name} command example`}
-      set:html={await highlight(project.example)}
-    />
+      aria-label={`${project.name} examples`}
+    >
+      {project.examples.map(async (example) => (
+        <Fragment set:html={await highlight(example)} />
+      ))}
+    </div>
   )}
 </article>

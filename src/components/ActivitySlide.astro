@@ -16,9 +16,6 @@ const { activity } = Astro.props;
   aria-labelledby={`heading-${activity.slug}`}
 >
   <WorkHeading work={activity} />
-  <div class="project-copy">
-    <p class="project-summary">{activity.role}</p>
-    <p class="project-description">{activity.description}</p>
-  </div>
+  <p class="project-description">{activity.description}</p>
   <img class="project-preview" {...activity.image} />
 </article>

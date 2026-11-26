@@ -157,7 +157,6 @@ button:focus-visible,
 }
 #portfolio[data-layout="horizontal"] .project-preview {
   max-height: 100%;
-  object-position: left top;
 }
 #portfolio[data-layout="horizontal"] .examples {
   min-height: 0;
@@ -286,14 +285,9 @@ button:focus-visible,
   width: 44px;
   height: 44px;
 }
-.work-links svg {
-  height: 20px;
-  width: 20px;
-}
-.project-summary {
-  max-width: 43ch;
-  font-size: clamp(1.125rem, 2vw, 1.55rem);
-  line-height: 1.42;
+.work-links :is(svg, .social-mark) {
+  height: 24px;
+  width: 24px;
 }
 .project-description,
 .library-description {
@@ -302,8 +296,7 @@ button:focus-visible,
   line-height: 1.55;
 }
 .project-description {
-  max-width: 52ch;
-  margin-top: 0.65em;
+  max-width: 65ch;
 }
 .library-description {
   margin-block: 12px 18px;
@@ -311,11 +304,14 @@ button:focus-visible,
 }
 .project-preview {
   display: block;
+  align-self: start;
   justify-self: start;
   width: 100%;
   max-width: 525px;
   height: auto;
+  aspect-ratio: 16/9;
   object-fit: contain;
+  background: color-mix(in srgb, var(--ink) 5%, var(--paper));
   border-radius: 3px;
 }
 .recipe,
@@ -403,9 +399,6 @@ button:focus-visible,
   }
   #portfolio[data-layout="horizontal"] .project {
     gap: 8px;
-  }
-  #portfolio[data-layout="horizontal"] .project-summary {
-    font-size: clamp(1rem, 4svh, 1.25rem);
   }
   #portfolio[data-layout="horizontal"] :is(.project-description, .library-description) {
     font-size: clamp(0.875rem, 3.8svh, 1rem);
@@ -518,9 +511,6 @@ button:focus-visible,
   .work-heading .brand {
     margin-inline-start: 0.3em;
     vertical-align: -0.12em;
-  }
-  .project-summary {
-    font-size: 1.0625rem;
   }
   .project-description,
   .library-description {

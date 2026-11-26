@@ -15,10 +15,7 @@ const { project } = Astro.props;
   aria-labelledby={`heading-${project.slug}`}
 >
   <WorkHeading work={project} />
-  <div class="project-copy">
-    <p class="project-summary">{project.summary}</p>
-    <p class="project-description">{project.description}</p>
-  </div>
+  <p class="project-description">{project.description}</p>
   {"image" in project ? (
     <img
       class:list={["project-preview", { recipe: project.slug === "minecraft-inventory" }]}
